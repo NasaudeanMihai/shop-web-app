@@ -4,7 +4,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import { AuthContext } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { AuthContextInterface } from '../../interface/authContext';
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
 import AddData from '../../components/AddData';

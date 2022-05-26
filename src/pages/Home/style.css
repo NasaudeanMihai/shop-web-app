@@ -3,7 +3,9 @@
   padding-bottom: 20px;
 }
 
-h1 {
+.img {
+  width: 100px;
+  height: 100px;
 }
 
 .wrapper-row {

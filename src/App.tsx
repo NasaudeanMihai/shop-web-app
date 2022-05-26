@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Link, Route, Routes } from 'react-router-dom';
-import { Container, Navbar, Row } from 'react-bootstrap';
 
 import Home from './pages/Home';
 import Admin from './pages/Admin';
@@ -14,9 +13,9 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Container>
-          <Row>
-            <Navbar className="wrapper-navbar">
+        <div>
+          <div className="row">
+            <div className="wrapper-navbar">
               <Link className="links-btn wrapper-links" to="/">
                 <li className="links-btn li-btn">Home</li>
               </Link>
@@ -30,9 +29,9 @@ function App() {
               <Link className="links-btn wrapper-links profile-link" to="/admin">
                 <li className="links-btn">Profile</li>
               </Link>
-            </Navbar>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

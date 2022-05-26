@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react';
-import { Col, Form, FormGroup, Button } from 'react-bootstrap';
+import { useState, useContext, FC, ReactElement } from 'react';
+
 import './style.css';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { AuthContext } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
-import _default from 'react-bootstrap/esm/Accordion';
 import { AuthContextInterface } from '../../interface/authContext';
 
-const SignUp = () => {
+const SignUp: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -45,23 +44,23 @@ const SignUp = () => {
   return (
     <div className="wrapper-sign-up">
       <h1>Create Account</h1>
-      <Col>
-        <FormGroup controlId="formEmail" className="wrapper-form">
-          <Form.Label>Name</Form.Label>
-          <Form.Control onChange={handleOnChangeName} type="name" placeholder="Example: John" />
-        </FormGroup>
-        <FormGroup controlId="formEmail" className="wrapper-form">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control onChange={handleOnChangeEmail} type="email" placeholder="Example@email.com" />
-        </FormGroup>
-        <FormGroup controlId="formEmail" className="wrapper-form">
-          <Form.Label>Password</Form.Label>
-          <Form.Control onChange={handleOnChangePassword} type="password" placeholder="Password" />
-        </FormGroup>
-        <Button onClick={handleSignUpButton} className="sign-up-bottom">
+      <div className="col">
+        <div className="wrapper-form">
+          <h2>Name</h2>
+          <input onChange={handleOnChangeName} type="name" placeholder="Example: John" />
+        </div>
+        <div className="wrapper-form">
+          <h2>Email Address</h2>
+          <input onChange={handleOnChangeEmail} type="email" placeholder="Example@email.com" />
+        </div>
+        <div className="wrapper-form">
+          <h2>Password</h2>
+          <input onChange={handleOnChangePassword} type="password" placeholder="Password" />
+        </div>
+        <button onClick={handleSignUpButton} className="sign-up-bottom">
           <p className="sign-up-bottom-text">Sign up</p>
-        </Button>
-      </Col>
+        </button>
+      </div>
     </div>
   );
 };

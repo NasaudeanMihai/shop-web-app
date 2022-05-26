@@ -2,17 +2,18 @@ import { useEffect, useState, FC, ReactElement } from 'react';
 import { db } from '../../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
-import { Card, Row } from 'react-bootstrap';
-
 import './style.css';
 
 interface DataUserProps {
-  Jeans: [];
-  tShirt: [];
+  brand: string;
+  size: string[];
+  clothes: string;
+  image: string;
+  price: string;
 }
 
 const HomePage: FC = (): ReactElement => {
-  const [dataUser, setDataUser] = useState<DataUserProps>({ tShirt: [], Jeans: [] });
+  const [dataUser, setDataUser] = useState<DataUserProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -20,13 +21,14 @@ const HomePage: FC = (): ReactElement => {
       const clothesCollection = collection(db, 'web-shop');
       const clothesSnapshot = await getDocs(clothesCollection);
       const clothesList = clothesSnapshot.docs.map(doc => doc.data());
+      console.log(clothesList);
 
-      setDataUser({ ...dataUser, ...clothesList[0] });
       setIsLoading(false);
+      // setDataUser(clothesList);
     };
 
     getDataFromFirestore();
-  }, [dataUser]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -41,19 +43,24 @@ const HomePage: FC = (): ReactElement => {
       <h1>Home</h1>
 
       <h3>Jeans</h3>
-      <Row className="wrapper-row">
-        {dataUser.Jeans.map(item => (
-          <Card className="wrapper-card-img">
-            <Card.Img className="card-img" src={item} />
-            <Card.Body>
-              <Card.Title>Example</Card.Title>
-            </Card.Body>
-          </Card>
-        ))}
-      </Row>
+      <div className="row">
+        {dataUser.map(item => {
+          console.log(item);
+          if (item) {
+            return (
+              <div className="wrapper-card-img">
+                {/* <Card.Img className="card-img" src={item.image} />
+                <Card.Body>
+                  <Card.Title>Example</Card.Title>
+                </Card.Body> */}
+              </div>
+            );
+          }
+        })}
+      </div>
 
       <h3>T-Shirts</h3>
-      <Row className="wrapper-row">
+      {/* <Row className="wrapper-row">
         {dataUser.tShirt.map(item => (
           <Card className="wrapper-card-img">
             <Card.Img className="card-img" src={item} />
@@ -62,7 +69,7 @@ const HomePage: FC = (): ReactElement => {
             </Card.Body>
           </Card>
         ))}
-      </Row>
+      </Row> */}
     </div>
   );
 };

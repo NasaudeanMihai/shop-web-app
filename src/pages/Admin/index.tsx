@@ -46,11 +46,11 @@ const Admin: FC = (): ReactElement => {
   const handleEditButton = () => null;
 
   const handleAddDataButton = () => {
-    setAddNewData(true);
+    setAddNewData(!addNewData);
     setEditData(false);
   };
   const handleEditDataButton = () => {
-    setEditData(true);
+    setEditData(!editData);
     setAddNewData(false);
   };
 

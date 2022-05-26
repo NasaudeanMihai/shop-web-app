@@ -24,8 +24,11 @@ function App() {
               <Link className="links-btn wrapper-links" to="/login">
                 <li className="links-btn">Login</li>
               </Link>
-              <Link className="links-btn wrapper-links signUp-link" to="/signUp">
+              <Link className="links-btn wrapper-links" to="/signUp">
                 <li className="links-btn">Sign Up</li>
+              </Link>
+              <Link className="links-btn wrapper-links profile-link" to="/admin">
+                <li className="links-btn">Profile</li>
               </Link>
             </Navbar>
           </Row>

@@ -13,6 +13,7 @@ interface DataUserProps {
 
 const HomePage: FC = (): ReactElement => {
   const [dataUser, setDataUser] = useState<DataUserProps>({ tShirt: [], Jeans: [] });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getDataFromFirestore = async () => {
@@ -21,10 +22,19 @@ const HomePage: FC = (): ReactElement => {
       const clothesList = clothesSnapshot.docs.map(doc => doc.data());
 
       setDataUser({ ...dataUser, ...clothesList[0] });
+      setIsLoading(false);
     };
 
     getDataFromFirestore();
   }, [dataUser]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="wrapper-home-page">

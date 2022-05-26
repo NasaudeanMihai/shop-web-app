@@ -18,12 +18,20 @@ const Login = () => {
     navigate('/login');
   };
 
+  const handleUserDataButton = () => {
+    const data = localStorage.getItem('userData');
+    console.log(data);
+  };
+
   if (userData) {
     return (
       <div className="wrapper-sign-in">
-        <h1>Admin</h1>
+        <h1>Profile</h1>
 
         <Col>
+          <Button onClick={handleUserDataButton} className="sign-up-bottom">
+            <p className="sign-up-bottom-text">get data from localStorage</p>
+          </Button>
           <Button onClick={handleLogoutButton} className="sign-up-bottom">
             <p className="sign-up-bottom-text">Log out</p>
           </Button>

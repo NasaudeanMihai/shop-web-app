@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Button, Col, Form, FormGroup } from 'react-bootstrap';
 import './style.css';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContextInterface } from '../../interface/authContext';
 
 const Login = () => {
+  const [checkIfUserIsLogged, setCheckIfUserIsLogged] = useState<boolean>(true);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
@@ -28,7 +29,24 @@ const Login = () => {
   };
   console.log(userData);
 
-  if (userData) navigate('/admin');
+  useEffect(() => {
+    const checkIfUserIsLoggedIn = () => {
+      const data = localStorage.getItem('userData');
+      if (data) {
+        navigate('/admin');
+        setCheckIfUserIsLogged(false);
+      }
+    };
+    return checkIfUserIsLoggedIn;
+  }, [navigate]);
+
+  if (checkIfUserIsLogged) {
+    return (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="wrapper-sign-in">

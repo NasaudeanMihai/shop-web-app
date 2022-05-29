@@ -18,6 +18,7 @@ const AdminPage: FC = (): ReactElement => {
     price: '',
     size: ['S', 'M', 'L', 'XL'],
   });
+  const { category, brand, image, price, size } = addData;
   const [addNewData, setAddNewData] = useState<boolean>(false);
   const [editData, setEditData] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -34,10 +35,14 @@ const AdminPage: FC = (): ReactElement => {
 
   const handleAddButton = async () => {
     try {
-      if (addData.brand !== '' && addData.price !== '')
-        await addDoc(collection(db, 'web-shop', 'clothes', addData.category), addData);
+      if (brand !== '' && price !== '')
+        await addDoc(collection(db, 'web-shop', 'clothes', category), {
+          brand,
+          image,
+          price,
+          size,
+        });
       setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
-      setAddNewData(false);
     } catch (error) {
       console.log(error);
     }

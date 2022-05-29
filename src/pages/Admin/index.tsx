@@ -7,12 +7,12 @@ import { AuthContextInterface } from '../../interface/authContext';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
-import AddData from '../../components/AddData';
-import EditData from '../../components/EditData';
+import AddOrEditData from '../../components/AddOrEditData';
 import { DataItemProps } from '../../interface';
 
 const Admin: FC = (): ReactElement => {
   const [addData, setAddData] = useState<DataItemProps>({
+    category: '',
     brand: '',
     image: '',
     price: '',
@@ -32,11 +32,11 @@ const Admin: FC = (): ReactElement => {
     localStorage.removeItem('userData');
   };
 
-  const handleSendButton = async () => {
+  const handleAddButton = async () => {
     try {
       if (addData.brand !== '' && addData.price !== '')
-        await addDoc(collection(db, 'web-shop', 'clothes', 'jeans'), addData);
-      setAddData({ brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
+        await addDoc(collection(db, 'web-shop', 'clothes', addData.category), addData);
+      setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
       setAddNewData(false);
     } catch (error) {
       console.log(error);
@@ -69,8 +69,8 @@ const Admin: FC = (): ReactElement => {
           </button>
         </div>
         <h1>{addNewData ? 'Add New Data' : editData && 'Edit'}</h1>
-        {addNewData && <AddData addData={addData} setAddData={setAddData} handleSendButton={handleSendButton} />}
-        {editData && <EditData addData={addData} setAddData={setAddData} handleEditButton={handleEditButton} />}
+        {addNewData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleAddButton} />}
+        {editData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleEditButton} />}
       </div>
     );
   }

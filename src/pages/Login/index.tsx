@@ -7,25 +7,26 @@ import { AuthContextInterface } from '../../interface/authContext';
 
 const Login = () => {
   const [checkIfUserIsLogged, setCheckIfUserIsLogged] = useState<boolean>(true);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [userCredential, setUserCredential] = useState({ email: '', password: '' });
+  const { email, password } = userCredential;
   const navigate = useNavigate();
 
   const { userData, setUserData } = useContext<AuthContextInterface>(AuthContext);
   const auth = getAuth();
 
   const handleLoginButton = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(_ => {
-        setUserData(true);
-        console.log('logged in');
-        navigate('/admin');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (email && password) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(_ => {
+          setUserData(true);
+          navigate('/admin');
+          setUserCredential({ email: '', password: '' });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
-  console.log(userData);
 
   useEffect(() => {
     const checkIfUserIsLoggedIn = () => {
@@ -54,11 +55,19 @@ const Login = () => {
       <div className="col">
         <div className="wrapper-form">
           <h2>Email Address</h2>
-          <input onChange={(event: any) => setEmail(event.target.value)} type="email" placeholder="Example@email.com" />
+          <input
+            onChange={(event: any) => setUserCredential({ ...userCredential, ...{ email: event.target.value } })}
+            type="email"
+            placeholder="Example@email.com"
+          />
         </div>
         <div className="wrapper-form">
           <h2>Password</h2>
-          <input onChange={(event: any) => setPassword(event.target.value)} type="password" placeholder="Password" />
+          <input
+            onChange={(event: any) => setUserCredential({ ...userCredential, ...{ password: event.target.value } })}
+            type="password"
+            placeholder="Password"
+          />
         </div>
         <button onClick={handleLoginButton} className="sign-up-bottom">
           <p className="sign-up-bottom-text">Login</p>

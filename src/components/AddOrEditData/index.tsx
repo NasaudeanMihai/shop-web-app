@@ -1,8 +1,16 @@
-import { EditDataProps } from './props';
+import { AddDataProps } from './props';
 
-const EditData = ({ addData, setAddData, handleEditButton }: EditDataProps) => {
+const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
   return (
     <div className="col">
+      <div>
+        <p>Category</p>
+        <input
+          value={addData.category}
+          placeholder="Example: Jeans, Pants"
+          onChange={event => setAddData({ ...addData, ...{ category: event.target.value } })}
+        />
+      </div>
       <div>
         <p>Brand</p>
         <input
@@ -28,11 +36,11 @@ const EditData = ({ addData, setAddData, handleEditButton }: EditDataProps) => {
         />
       </div>
 
-      <button onClick={handleEditButton}>
+      <button onClick={handleSendButton}>
         <p>Send</p>
       </button>
     </div>
   );
 };
 
-export default EditData;
+export default AddData;

@@ -42,8 +42,8 @@ const HomePage: FC = (): ReactElement => {
           if (item) {
             return (
               <div className="col">
-                <p>{item.price}</p>
                 <img className="img" src={item.image} />
+                <p>{item.price}</p>
               </div>
             );
           }

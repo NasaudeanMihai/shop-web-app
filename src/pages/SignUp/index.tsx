@@ -8,9 +8,9 @@ import { AuthContextInterface } from '../../interface/authContext';
 
 const SignUp: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);
-  const [email, setEmail] = useState<string>('');
-  const [name, setName] = useState<string>('');
+  const [userCredential, setUserCredential] = useState({ email: '', name: '' });
   const [password, setPassword] = useState<string>('');
+  const { email, name } = userCredential;
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -30,11 +30,11 @@ const SignUp: FC = (): ReactElement => {
 
   const handleOnChangeName = (event: any) => {
     event.preventDefault();
-    setName(event?.target.value);
+    setUserCredential({ ...userCredential, ...{ name: event?.target.value } });
   };
   const handleOnChangeEmail = (event: any) => {
     event.preventDefault();
-    setEmail(event?.target.value);
+    setUserCredential({ ...userCredential, ...{ email: event?.target.value } });
   };
   const handleOnChangePassword = (event: any) => {
     event.preventDefault();

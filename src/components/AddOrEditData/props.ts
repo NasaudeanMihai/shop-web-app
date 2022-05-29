@@ -1,4 +1,4 @@
-import { DataItemProps } from '../../interface';
+import { DataItemProps } from '../../interface/interface';
 
 export interface AddDataProps {
   addData: DataItemProps;

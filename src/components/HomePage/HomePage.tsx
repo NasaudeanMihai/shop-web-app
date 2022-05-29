@@ -1,7 +1,7 @@
 import { useEffect, useState, FC, ReactElement } from 'react';
 import { db } from '../../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
-import { DataItemProps } from '../../interface';
+import { DataItemProps } from '../../interface/interface';
 
 import './style.css';
 

@@ -3,7 +3,7 @@ import './App.css';
 import Routes from './routes/routes';
 import Tabs from './routes/tabs';
 
-import { AuthProvider } from './context/authContext';
+import { AuthProvider } from './context/authContext/authContext';
 
 function App() {
   return (

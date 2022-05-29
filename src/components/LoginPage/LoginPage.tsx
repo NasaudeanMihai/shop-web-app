@@ -23,7 +23,7 @@ const LoginPage = () => {
           setUserCredential({ email: '', password: '' });
         })
         .catch(error => {
-          console.log(error);
+          return;
         });
     }
   };

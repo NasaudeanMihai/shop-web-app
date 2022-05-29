@@ -44,7 +44,7 @@ const AdminPage: FC = (): ReactElement => {
         });
       setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
 

@@ -38,7 +38,6 @@ const HomePage: FC = (): ReactElement => {
       <h3>Jeans</h3>
       <div className="row">
         {dataUser.map((item: DataItemProps) => {
-          console.log(item);
           if (item) {
             return (
               <div className="col">

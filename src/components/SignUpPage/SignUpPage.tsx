@@ -23,7 +23,7 @@ const SignUpPage: FC = (): ReactElement => {
           localStorage.setItem('userData', JSON.stringify({ name, email }));
         })
         .catch(error => {
-          console.log(error);
+          return;
         });
     }
   };

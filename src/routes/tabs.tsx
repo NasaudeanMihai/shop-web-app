@@ -1,30 +1,31 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { TabsProps } from './props';
 
-const Tabs = ({ children }: TabsProps) => {
+const Tabs = () => {
   return (
-    <div className="App">
-      <div>
-        <div className="row">
-          <div className="wrapper-navbar">
-            <Link className="links-btn wrapper-links" to="/">
-              <li className="links-btn li-btn">Home</li>
-            </Link>
+    <div
+      className="row justify-content-end"
+      style={{ marginRight: '5%', marginLeft: '5%', position: 'fixed', top: 0, width: '90%', zIndex: 1 }}>
+      <Link className="links-btn wrapper-links" to="/">
+        <li className="links-btn li-btn" style={{ fontSize: 20 }}>
+          Home
+        </li>
+      </Link>
 
-            <Link className="links-btn wrapper-links" to="/login">
-              <li className="links-btn">Login</li>
-            </Link>
-            <Link className="links-btn wrapper-links" to="/signUp">
-              <li className="links-btn">Sign Up</li>
-            </Link>
-            <Link className="links-btn wrapper-links profile-link" to="/admin">
-              <li className="links-btn">Profile</li>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {children}
+      <Link className="links-btn wrapper-links" to="/login">
+        <li className="links-btn" style={{ fontSize: 20 }}>
+          Login
+        </li>
+      </Link>
+      <Link className="links-btn wrapper-links" to="/signUp">
+        <li className="links-btn" style={{ fontSize: 20 }}>
+          Sign Up
+        </li>
+      </Link>
+      <Link className="links-btn wrapper-links profile-link" to="/admin">
+        <li className="links-btn" style={{ fontSize: 20 }}>
+          Profile
+        </li>
+      </Link>
     </div>
   );
 };

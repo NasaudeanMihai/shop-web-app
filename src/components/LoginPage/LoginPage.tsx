@@ -31,7 +31,9 @@ const LoginPage = () => {
   useEffect(() => {
     const checkIfUserIsLoggedIn = () => {
       const data = localStorage.getItem('userData');
+      console.log(data);
       if (data) {
+        // localStorage.setItem('userData', {email: data.});
         navigate('/admin');
         setCheckIfUserIsLogged(false);
       }
@@ -50,28 +52,42 @@ const LoginPage = () => {
 
   return (
     <div className="wrapper-sign-in">
-      <h1>Sign in</h1>
+      <img
+        className="img"
+        src="https://images.unsplash.com/photo-1618588429012-0559f1cbc5aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fG5hbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+      />
+      <div className="container">
+        <div className="col">
+          <div className="row" style={{ marginTop: 20, paddingBottom: 20, border: '2px solid #eee' }}>
+            <h1 style={{ marginBottom: 40 }}>Welcome</h1>
 
-      <div className="col">
-        <div className="wrapper-form">
-          <h2>Email Address</h2>
-          <input
-            onChange={(event: any) => setUserCredential({ ...userCredential, ...{ email: event.target.value } })}
-            type="email"
-            placeholder="Example@email.com"
-          />
+            <div className="col">
+              <div className="input-group-4" style={{ marginBottom: 10 }}>
+                <span className="input-group-text-2">Email Address</span>
+                <input
+                  type="email"
+                  aria-label="Email Address"
+                  className="form-control"
+                  onChange={(event: any) => setUserCredential({ ...userCredential, ...{ email: event.target.value } })}
+                />
+              </div>
+              <div className="input-group-4">
+                <span className="input-group-text-2">Password</span>
+                <input
+                  type={'password'}
+                  aria-label="Password"
+                  className="form-control"
+                  onChange={(event: any) =>
+                    setUserCredential({ ...userCredential, ...{ password: event.target.value } })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+          <button onClick={handleLoginButton} className="sign-up-bottom">
+            <p className="sign-up-bottom-text">Login</p>
+          </button>
         </div>
-        <div className="wrapper-form">
-          <h2>Password</h2>
-          <input
-            onChange={(event: any) => setUserCredential({ ...userCredential, ...{ password: event.target.value } })}
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <button onClick={handleLoginButton} className="sign-up-bottom">
-          <p className="sign-up-bottom-text">Login</p>
-        </button>
       </div>
     </div>
   );

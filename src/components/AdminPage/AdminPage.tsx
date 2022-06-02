@@ -61,7 +61,7 @@ const AdminPage: FC = (): ReactElement => {
 
   if (userData) {
     return (
-      <div className="wrapper-sign-in">
+      <div className="container" style={{ marginTop: '3rem' }}>
         <div>
           <button onClick={handleEditDataButton} className="sign-up-bottom">
             <p className="sign-up-bottom-text">Edit Data</p>
@@ -80,9 +80,12 @@ const AdminPage: FC = (): ReactElement => {
     );
   }
   return (
-    <button onClick={handleLogoutButton} className="sign-up-bottom">
-      <p className="sign-up-bottom-text">Log out</p>
-    </button>
+    <div className="container" style={{ alignContent: 'center', alignItems: 'center', marginTop: '10rem' }}>
+      <h3>You need to be logged in</h3>
+      <button onClick={handleLogoutButton} className="sign-up-bottom">
+        <p className="sign-up-bottom-text">Sign in</p>
+      </button>
+    </div>
   );
 };
 

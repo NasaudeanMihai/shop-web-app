@@ -31,9 +31,8 @@ const LoginPage = () => {
   useEffect(() => {
     const checkIfUserIsLoggedIn = () => {
       const data = localStorage.getItem('userData');
-      console.log(data);
+
       if (data) {
-        // localStorage.setItem('userData', {email: data.});
         navigate('/admin');
         setCheckIfUserIsLogged(false);
       }
@@ -58,7 +57,15 @@ const LoginPage = () => {
       />
       <div className="container">
         <div className="col">
-          <div className="row" style={{ marginTop: 20, paddingBottom: 20, border: '2px solid #eee' }}>
+          <div
+            className="row"
+            style={{
+              marginTop: 20,
+              paddingBottom: 40,
+              border: '2px solid #eee',
+              backgroundColor: 'white',
+              paddingTop: 20,
+            }}>
             <h1 style={{ marginBottom: 40 }}>Welcome</h1>
 
             <div className="col">

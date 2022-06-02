@@ -34,7 +34,7 @@ const HomePage: FC = (): ReactElement => {
         const clothesCollection = collection(db, 'web-shop', 'clothes', category);
         const clothesSnapshot = await getDocs(clothesCollection);
         const clothesList = clothesSnapshot.docs.map(doc => doc.data());
-        console.log(clothesList);
+
         setIsLoading(false);
         setDataUser(clothesList);
       }

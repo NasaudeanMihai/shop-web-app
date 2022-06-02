@@ -68,12 +68,12 @@ const HomePage: FC = (): ReactElement => {
               </button>
             </div>
           </div>
-          <div className="row justify-content-md-center">
-            <div className="col" style={{ marginRight: 10 }}>
-              <h3>{category?.toUpperCase()}</h3>
+          <div className="row justify-content-md-center" style={{ marginLeft: '3rem' }}>
+            <div className="col-auto">
+              <p style={{ fontWeight: 'bold' }}>{category?.toUpperCase()}</p>
             </div>
             {dataUser && (
-              <div className="col-md-auto">
+              <div className="col-auto">
                 <p> {dataUser.length} de produse</p>
               </div>
             )}

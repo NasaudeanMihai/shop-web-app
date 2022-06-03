@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react';
 import './style.css';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/authContext/authContext';
 import { useNavigate } from 'react-router-dom';
-import { AuthContextInterface } from '../../interface/authContext';
+import { AuthContextInterface } from '../../interface/authContext/authContext';
 
-const Login = () => {
+const LoginPage = () => {
   const [checkIfUserIsLogged, setCheckIfUserIsLogged] = useState<boolean>(true);
   const [userCredential, setUserCredential] = useState({ email: '', password: '' });
   const { email, password } = userCredential;
@@ -23,7 +23,7 @@ const Login = () => {
           setUserCredential({ email: '', password: '' });
         })
         .catch(error => {
-          console.log(error);
+          return;
         });
     }
   };
@@ -77,4 +77,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

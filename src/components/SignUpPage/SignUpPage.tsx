@@ -2,11 +2,11 @@ import { useState, useContext, FC, ReactElement } from 'react';
 
 import './style.css';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/authContext/authContext';
 import { useNavigate } from 'react-router-dom';
-import { AuthContextInterface } from '../../interface/authContext';
+import { AuthContextInterface } from '../../interface/authContext/authContext';
 
-const SignUp: FC = (): ReactElement => {
+const SignUpPage: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);
   const [userCredential, setUserCredential] = useState({ email: '', name: '' });
   const [password, setPassword] = useState<string>('');
@@ -23,7 +23,7 @@ const SignUp: FC = (): ReactElement => {
           localStorage.setItem('userData', JSON.stringify({ name, email }));
         })
         .catch(error => {
-          console.log(error);
+          return;
         });
     }
   };
@@ -65,4 +65,4 @@ const SignUp: FC = (): ReactElement => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

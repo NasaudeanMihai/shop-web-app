@@ -1,7 +1,7 @@
 import { useEffect, useState, FC, ReactElement } from 'react';
 import { db } from '../../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
-import { DataItemProps } from '../../interface';
+import { DataItemProps } from '../../interface/interface';
 
 import './style.css';
 
@@ -38,7 +38,6 @@ const HomePage: FC = (): ReactElement => {
       <h3>Jeans</h3>
       <div className="row">
         {dataUser.map((item: DataItemProps) => {
-          console.log(item);
           if (item) {
             return (
               <div className="col">

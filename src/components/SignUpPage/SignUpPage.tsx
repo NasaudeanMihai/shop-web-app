@@ -20,7 +20,7 @@ const SignUpPage: FC = (): ReactElement => {
         .then(_ => {
           setUserData(true);
           navigate('/Login');
-          localStorage.setItem('userData', JSON.stringify({ name, email }));
+          localStorage.setItem('userData', JSON.stringify({ name, email, logged: true }));
         })
         .catch(error => {
           return;
@@ -45,18 +45,37 @@ const SignUpPage: FC = (): ReactElement => {
     <div className="wrapper-sign-up">
       <h1>Create Account</h1>
       <div className="col">
-        <div className="wrapper-form">
-          <h2>Name</h2>
-          <input onChange={handleOnChangeName} type="name" placeholder="Example: John" />
+        <div className="input-group-4" style={{ marginBottom: 10 }}>
+          <span className="input-group-text-2">User name</span>
+          <input
+            type="name"
+            aria-label="User name"
+            className="form-control"
+            onChange={handleOnChangeName}
+            placeholder="Example: John"
+          />
         </div>
-        <div className="wrapper-form">
-          <h2>Email Address</h2>
-          <input onChange={handleOnChangeEmail} type="email" placeholder="Example@email.com" />
+        <div className="input-group-4" style={{ marginBottom: 10 }}>
+          <span className="input-group-text-2">Email Address</span>
+          <input
+            type="email"
+            aria-label="Email Address"
+            className="form-control"
+            onChange={handleOnChangeEmail}
+            placeholder="Example@email.com"
+          />
         </div>
-        <div className="wrapper-form">
-          <h2>Password</h2>
-          <input onChange={handleOnChangePassword} type="password" placeholder="Password" />
+        <div className="input-group-4" style={{ marginBottom: 10 }}>
+          <span className="input-group-text-2">User name</span>
+          <input
+            type="password"
+            aria-label="Password"
+            className="form-control"
+            onChange={handleOnChangePassword}
+            placeholder="Password"
+          />
         </div>
+
         <button onClick={handleSignUpButton} className="sign-up-bottom">
           <p className="sign-up-bottom-text">Sign up</p>
         </button>

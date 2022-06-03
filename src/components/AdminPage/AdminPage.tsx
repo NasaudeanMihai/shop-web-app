@@ -62,18 +62,18 @@ const AdminPage: FC = (): ReactElement => {
   if (userData) {
     return (
       <div className="container" style={{ marginTop: '3rem' }}>
-        <div>
-          <button onClick={handleEditDataButton} className="sign-up-bottom">
-            <p className="sign-up-bottom-text">Edit Data</p>
+        <div className="row justify-content-center">
+          <button onClick={handleEditDataButton} className="sign-up-bottom" style={{ marginRight: '1rem' }}>
+            <p className="sign-up-bottom-text">Edit</p>
           </button>
-          <button onClick={handleAddDataButton} className="sign-up-bottom">
-            <p className="sign-up-bottom-text">Add Data</p>
+          <button onClick={handleAddDataButton} className="sign-up-bottom" style={{ marginRight: '1rem' }}>
+            <p className="sign-up-bottom-text">Add</p>
           </button>
           <button onClick={handleLogoutButton} className="sign-up-bottom">
             <p className="sign-up-bottom-text">Log out</p>
           </button>
         </div>
-        <h1>{addNewData ? 'Add New Data' : editData && 'Edit'}</h1>
+        <h1 style={{ marginTop: '1rem' }}>{addNewData ? 'Add New Data' : editData && 'Edit'}</h1>
         {addNewData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleAddButton} />}
         {editData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleEditButton} />}
       </div>

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TabsProps } from './props';
 
-const Tabs = ({ children }: TabsProps) => {
+const Tabs = () => {
   useEffect(() => {
     document.body.style.background = '#f2f2f7';
   }, []);
@@ -16,18 +15,23 @@ const Tabs = ({ children }: TabsProps) => {
             </Link>
 
             <Link className="links-btn wrapper-links" to="/login">
-              <li className="links-btn">Login</li>
+              <li className="links-btn" style={{ fontSize: 20 }}>
+                Login
+              </li>
             </Link>
             <Link className="links-btn wrapper-links" to="/signUp">
-              <li className="links-btn">Sign Up</li>
+              <li className="links-btn" style={{ fontSize: 20 }}>
+                Sign Up
+              </li>
             </Link>
             <Link className="links-btn wrapper-links profile-link" to="/admin">
-              <li className="links-btn">Profile</li>
+              <li className="links-btn" style={{ fontSize: 20 }}>
+                Profile
+              </li>
             </Link>
           </div>
         </div>
       </div>
-      {children}
     </div>
   );
 };

@@ -8,9 +8,10 @@ import { AuthProvider } from './context/authContext/authContext';
 function App() {
   return (
     <AuthProvider>
-      <Tabs>
+      <div className="App">
+        <Tabs />
         <Routes />
-      </Tabs>
+      </div>
     </AuthProvider>
   );
 }

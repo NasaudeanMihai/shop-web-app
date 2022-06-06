@@ -1,9 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
-import './style.css';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { AuthContext } from '../../context/authContext/authContext';
 import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../../context/authContext';
 import { AuthContextInterface } from '../../interface/authContext/authContext';
+import UserCredentialInput from '../Input/UserCredentialInput';
+
+import './style.css';
 
 const LoginPage = () => {
   const [checkIfUserIsLogged, setCheckIfUserIsLogged] = useState<boolean>(true);
@@ -11,7 +14,7 @@ const LoginPage = () => {
   const { email, password } = userCredential;
   const navigate = useNavigate();
 
-  const { userData, setUserData } = useContext<AuthContextInterface>(AuthContext);
+  const { setUserData } = useContext<AuthContextInterface>(AuthContext);
   const auth = getAuth();
 
   const handleLoginButton = () => {
@@ -69,26 +72,23 @@ const LoginPage = () => {
             <h1 style={{ marginBottom: 40 }}>Welcome</h1>
 
             <div className="col">
-              <div className="input-group-4" style={{ marginBottom: 10 }}>
-                <span className="input-group-text-2">Email Address</span>
-                <input
-                  type="email"
-                  aria-label="Email Address"
-                  className="form-control"
-                  onChange={(event: any) => setUserCredential({ ...userCredential, ...{ email: event.target.value } })}
-                />
-              </div>
-              <div className="input-group-4">
-                <span className="input-group-text-2">Password</span>
-                <input
-                  type={'password'}
-                  aria-label="Password"
-                  className="form-control"
-                  onChange={(event: any) =>
-                    setUserCredential({ ...userCredential, ...{ password: event.target.value } })
-                  }
-                />
-              </div>
+              <UserCredentialInput
+                name={'email'}
+                label={'Email Address'}
+                inputType={'email'}
+                ariaLabel={'Email Address'}
+                userCredential={userCredential}
+                setUserCredential={setUserCredential}
+              />
+
+              <UserCredentialInput
+                name={'password'}
+                label={'Password'}
+                inputType={'password'}
+                ariaLabel={'Password'}
+                userCredential={userCredential}
+                setUserCredential={setUserCredential}
+              />
             </div>
           </div>
           <button onClick={handleLoginButton} className="sign-up-bottom">

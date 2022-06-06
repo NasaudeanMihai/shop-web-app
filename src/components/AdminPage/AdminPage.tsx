@@ -1,7 +1,7 @@
 import { useContext, FC, ReactElement, useState } from 'react';
 import './style.css';
 import { getAuth, signOut } from 'firebase/auth';
-import { AuthContext } from '../../context/authContext/authContext';
+import { AuthContext } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { AuthContextInterface } from '../../interface/authContext/authContext';
 import { collection, addDoc } from 'firebase/firestore';

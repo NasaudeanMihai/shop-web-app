@@ -1,4 +1,4 @@
-import { DataItemProps } from '../../../interface/interface';
+import { DataItemProps } from '../../../interface/dataItemProps';
 
 export interface ItemButtonProps {
   handleItemButton: () => void;

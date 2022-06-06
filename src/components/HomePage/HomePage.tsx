@@ -7,7 +7,7 @@ import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import Loading from '../Loader/Loading';
 
-import './style.css';
+import './homePage.css';
 
 const image = {
   pants:

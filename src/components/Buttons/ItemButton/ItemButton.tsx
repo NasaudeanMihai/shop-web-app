@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { ItemButtonProps } from './props';
+import { ItemButtonProps } from './ItemButtonProps';
 
 const ItemButton: FC<ItemButtonProps> = ({ handleItemButton, item, altImage }: ItemButtonProps): ReactElement => {
   return (

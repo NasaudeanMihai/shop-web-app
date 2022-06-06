@@ -1,4 +1,4 @@
-import { AddDataProps } from './props';
+import { AddDataProps } from './AddOrEditDataProps';
 
 const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
   return (

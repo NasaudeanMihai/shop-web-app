@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { CategoryButtonProps } from './props';
+import { CategoryButtonProps } from './CategoryButtonProps';
 
 const CategoryButton: FC<CategoryButtonProps> = ({
   handleCategoryButton,

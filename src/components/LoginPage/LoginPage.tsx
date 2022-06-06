@@ -3,11 +3,11 @@ import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../context/authContext';
-import { AuthContextInterface } from '../../interface/authContext/authContext';
+import { AuthContextInterface } from '../../interface/authContext';
 import UserCredentialInput from '../Input/UserCredentialInput';
 import Button from '../Buttons/Button/Button';
 
-import './style.css';
+import './loginPage.css';
 
 const LoginPage = () => {
   const [checkIfUserIsLogged, setCheckIfUserIsLogged] = useState<boolean>(true);

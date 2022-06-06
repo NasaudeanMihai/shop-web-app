@@ -3,8 +3,11 @@ import { db } from '../../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 import { DataItemProps } from '../../interface/interface';
 import Filter from './Filter';
+import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
+import ItemButton from '../Buttons/ItemButton/ItemButton';
+import Loading from '../Loader/Loading';
 
-import './style.css';
+import './homePage.css';
 
 const image = {
   pants:
@@ -28,6 +31,22 @@ const HomePage: FC = (): ReactElement => {
     setCategory('shirt');
   };
 
+  const checkIsLoading = () => {
+    if (isLoading) {
+      return <Loading />;
+    } else {
+      return (
+        <div className="row align-items-start">
+          {dataUser.map((item: DataItemProps) => {
+            if (item) {
+              return <ItemButton handleItemButton={() => null} item={item} altImage={item.brand} />;
+            }
+          })}
+        </div>
+      );
+    }
+  };
+
   useEffect(() => {
     const getDataFromFirestore = async () => {
       if (category) {
@@ -47,26 +66,11 @@ const HomePage: FC = (): ReactElement => {
     <div className="wrapper-home-page container" style={{ backgroundColor: '#f2f2f7' }}>
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter />
-
         <div className="col align-items-start" style={{ backgroundColor: 'transparent', paddingTop: 20 }}>
           <div className="row align-items-center">
             <h2>Select Category</h2>
-            <div className="col">
-              <button
-                className="btn"
-                style={{ marginBottom: '1rem', marginRight: '1rem', marginLeft: '1rem' }}
-                onClick={handlePantsButton}>
-                <img className="img" src={image.pants} alt={'Jeans'} />
-              </button>
-            </div>
-            <div className="col">
-              <button
-                className="btn"
-                style={{ marginBottom: '1rem', marginRight: '1rem', marginLeft: '1rem' }}
-                onClick={handleShirtButton}>
-                <img className="img" src={image.shirt} alt={'Jeans'} />
-              </button>
-            </div>
+            <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
+            <CategoryButton handleCategoryButton={handleShirtButton} image={image.shirt} altImage={'Shirt'} />
           </div>
           <div className="row justify-content-md-center" style={{ marginLeft: '3rem' }}>
             <div className="col-auto">
@@ -78,26 +82,7 @@ const HomePage: FC = (): ReactElement => {
               </div>
             )}
           </div>
-          {isLoading ? (
-            <div className="container" style={{ marginTop: '5rem' }}>
-              <h2>Loading ...</h2>
-            </div>
-          ) : (
-            <div className="row align-items-start">
-              {dataUser.map((item: DataItemProps) => {
-                if (item) {
-                  return (
-                    <div className="col">
-                      <button className="btn" style={{ marginBottom: '1rem', marginRight: '1rem', marginLeft: '1rem' }}>
-                        <img className="img" src={item.image} alt={'Clothes'} />
-                        <p>{item.price}</p>
-                      </button>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          )}
+          {checkIsLoading()}
         </div>
       </div>
     </div>

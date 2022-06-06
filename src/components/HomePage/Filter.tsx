@@ -1,4 +1,10 @@
-const Filter = () => {
+import { FC, ReactElement } from 'react';
+import FilterCheckBox from '../CheckBox/FilterCheckBox';
+
+const Filter: FC = (): ReactElement => {
+  const size = ['X', 'M', 'L', 'XL'];
+  const price = ['< 10$', '10$ - 100$', '> 100$'];
+
   return (
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
       <div
@@ -13,18 +19,9 @@ const Filter = () => {
         }}>
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
         <div className="col">
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>Nike</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>Adidas</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>Mustang</p>
-          </div>
+          <FilterCheckBox name={'Nike'} handleCheckBoxOnChange={() => null} />
+          <FilterCheckBox name={'Adidas'} handleCheckBoxOnChange={() => null} />
+          <FilterCheckBox name={'Mustang'} handleCheckBoxOnChange={() => null} />
         </div>
       </div>
       <div
@@ -39,22 +36,9 @@ const Filter = () => {
         }}>
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Size:</p>
         <div className="col">
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>S</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>M</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>L</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>XL</p>
-          </div>
+          {size.map(item => (
+            <FilterCheckBox name={item} handleCheckBoxOnChange={() => null} />
+          ))}
         </div>
       </div>
       <div
@@ -69,18 +53,9 @@ const Filter = () => {
         }}>
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Price:</p>
         <div className="col">
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}> {'<'} 10$</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>10$ - 100$</p>
-          </div>
-          <div className="input-group">
-            <input className="form-check-input" type="checkbox" />
-            <p style={{ textAlign: 'center', marginLeft: 10 }}>{'>'} 100$</p>
-          </div>
+          {price.map(item => (
+            <FilterCheckBox name={item} handleCheckBoxOnChange={() => null} />
+          ))}
         </div>
       </div>
     </div>

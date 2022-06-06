@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import UserCredentialInput from '../Input/UserCredentialInput';
+import Button from '../Buttons/Button/Button';
 import { AuthContext } from '../../context/authContext';
 
 import { AuthContextInterface } from '../../interface/authContext/authContext';
@@ -63,10 +64,7 @@ const SignUpPage: FC = (): ReactElement => {
           userCredential={userCredential}
           setUserCredential={setUserCredential}
         />
-
-        <button onClick={handleSignUpButton} className="sign-up-bottom">
-          <p className="sign-up-bottom-text">Sign up</p>
-        </button>
+        <Button name={'Sign up'} handleButtonOnClick={handleSignUpButton} />
       </div>
     </div>
   );

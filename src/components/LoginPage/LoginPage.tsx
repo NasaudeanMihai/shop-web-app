@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import { AuthContextInterface } from '../../interface/authContext/authContext';
 import UserCredentialInput from '../Input/UserCredentialInput';
+import Button from '../Buttons/Button/Button';
 
 import './style.css';
 
@@ -91,9 +92,7 @@ const LoginPage = () => {
               />
             </div>
           </div>
-          <button onClick={handleLoginButton} className="sign-up-bottom">
-            <p className="sign-up-bottom-text">Login</p>
-          </button>
+          <Button name={'Login'} handleButtonOnClick={handleLoginButton} />
         </div>
       </div>
     </div>

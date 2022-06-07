@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { childrenProp, AuthContextInterface } from '../../interface/authContext/authContext';
+import { childrenProp, AuthContextInterface } from '../interface/authContext/authContext';
 
 const initialState: AuthContextInterface = {
   userData: false,

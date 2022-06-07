@@ -1,0 +1,11 @@
+.sign-up-bottom {
+    margin-top: 2rem;
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sign-up-bottom-text {
+    text-align: center;
+    margin: 0;
+  }

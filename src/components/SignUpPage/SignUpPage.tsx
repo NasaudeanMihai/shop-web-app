@@ -1,16 +1,19 @@
 import { useState, useContext, FC, ReactElement } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
+import UserCredentialInput from '../Input/UserCredentialInput';
+import Button from '../Buttons/Button/Button';
+import { AuthContext } from '../../context/authContext';
+
+import { AuthContextInterface } from '../../interface/authContext/authContext';
 
 import './style.css';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { AuthContext } from '../../context/authContext/authContext';
-import { useNavigate } from 'react-router-dom';
-import { AuthContextInterface } from '../../interface/authContext/authContext';
 
 const SignUpPage: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);
-  const [userCredential, setUserCredential] = useState({ email: '', name: '' });
-  const [password, setPassword] = useState<string>('');
-  const { email, name } = userCredential;
+  const [userCredential, setUserCredential] = useState({ email: '', name: '', password: '' });
+  const { email, name, password } = userCredential;
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -28,57 +31,40 @@ const SignUpPage: FC = (): ReactElement => {
     }
   };
 
-  const handleOnChangeName = (event: any) => {
-    event.preventDefault();
-    setUserCredential({ ...userCredential, ...{ name: event?.target.value } });
-  };
-  const handleOnChangeEmail = (event: any) => {
-    event.preventDefault();
-    setUserCredential({ ...userCredential, ...{ email: event?.target.value } });
-  };
-  const handleOnChangePassword = (event: any) => {
-    event.preventDefault();
-    setPassword(event?.target.value);
-  };
-
   return (
     <div className="wrapper-sign-up">
       <h1>Create Account</h1>
       <div className="col">
-        <div className="input-group-4" style={{ marginBottom: 10 }}>
-          <span className="input-group-text-2">User name</span>
-          <input
-            type="name"
-            aria-label="User name"
-            className="form-control"
-            onChange={handleOnChangeName}
-            placeholder="Example: John"
-          />
-        </div>
-        <div className="input-group-4" style={{ marginBottom: 10 }}>
-          <span className="input-group-text-2">Email Address</span>
-          <input
-            type="email"
-            aria-label="Email Address"
-            className="form-control"
-            onChange={handleOnChangeEmail}
-            placeholder="Example@email.com"
-          />
-        </div>
-        <div className="input-group-4" style={{ marginBottom: 10 }}>
-          <span className="input-group-text-2">User name</span>
-          <input
-            type="password"
-            aria-label="Password"
-            className="form-control"
-            onChange={handleOnChangePassword}
-            placeholder="Password"
-          />
-        </div>
+        <UserCredentialInput
+          name={'name'}
+          label={'User Name'}
+          inputType={'name'}
+          ariaLabel={'User name'}
+          placeholder="Example: John"
+          userCredential={userCredential}
+          setUserCredential={setUserCredential}
+        />
 
-        <button onClick={handleSignUpButton} className="sign-up-bottom">
-          <p className="sign-up-bottom-text">Sign up</p>
-        </button>
+        <UserCredentialInput
+          name={'email'}
+          label={'Email Address'}
+          inputType={'email'}
+          ariaLabel={'Email Address'}
+          placeholder="Example@email.com"
+          userCredential={userCredential}
+          setUserCredential={setUserCredential}
+        />
+
+        <UserCredentialInput
+          name={'password'}
+          label={'Password'}
+          inputType={'password'}
+          ariaLabel={'Password'}
+          placeholder="Password"
+          userCredential={userCredential}
+          setUserCredential={setUserCredential}
+        />
+        <Button name={'Sign up'} handleButtonOnClick={handleSignUpButton} />
       </div>
     </div>
   );

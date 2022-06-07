@@ -6,9 +6,9 @@ import UserCredentialInput from '../Input/UserCredentialInput';
 import Button from '../Buttons/Button/Button';
 import { AuthContext } from '../../context/authContext';
 
-import { AuthContextInterface } from '../../interface/authContext/authContext';
+import { AuthContextInterface } from '../../interface/authContext';
 
-import './style.css';
+import './signUpPage.css';
 
 const SignUpPage: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);

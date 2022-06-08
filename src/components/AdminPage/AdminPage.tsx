@@ -8,6 +8,7 @@ import { db } from '../../firebase-config';
 
 import AddOrEditData from '../AddOrEditData/AddOrEditData';
 import { DataItemProps } from '../../interface/dataItemProps';
+import CategoryToEdit from '../CategoryToEdit/CategoryToEdit';
 
 import './adminPage.css';
 
@@ -49,8 +50,6 @@ const AdminPage: FC = (): ReactElement => {
     }
   };
 
-  const handleEditButton = () => null;
-
   const handleAddDataButton = () => {
     setAddNewData(!addNewData);
     setEditData(false);
@@ -76,7 +75,7 @@ const AdminPage: FC = (): ReactElement => {
         </div>
         <h1 style={{ marginTop: '1rem' }}>{addNewData ? 'Add New Data' : editData && 'Edit'}</h1>
         {addNewData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleAddButton} />}
-        {editData && <AddOrEditData addData={addData} setAddData={setAddData} handleSendButton={handleEditButton} />}
+        {editData && <CategoryToEdit />}
       </div>
     );
   }

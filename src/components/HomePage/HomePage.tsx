@@ -6,6 +6,7 @@ import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import Loading from '../Loader/Loading';
+import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
 
 import './homePage.css';
 
@@ -31,6 +32,22 @@ const HomePage: FC = (): ReactElement => {
     setCategory('shirt');
   };
 
+  const categoryAndNrOfProducts = () => {
+    if (dataUser) {
+      return (
+        <div className="row justify-content-md-center" style={{ marginLeft: '3rem' }}>
+          <div className="col-auto">
+            <p style={{ fontWeight: 'bold' }}>{category?.toUpperCase()}</p>
+          </div>
+
+          <div className="col-auto">
+            <p> {dataUser.length} de produse</p>
+          </div>
+        </div>
+      );
+    }
+  };
+
   const checkIsLoading = () => {
     if (isLoading) {
       return <Loading />;
@@ -50,12 +67,8 @@ const HomePage: FC = (): ReactElement => {
   useEffect(() => {
     const getDataFromFirestore = async () => {
       if (category) {
-        const clothesCollection = collection(db, 'web-shop', 'clothes', category);
-        const clothesSnapshot = await getDocs(clothesCollection);
-        const clothesList = clothesSnapshot.docs.map(doc => doc.data());
-
+        setDataUser(await getCategoryClothesFromFirestore(category));
         setIsLoading(false);
-        setDataUser(clothesList);
       }
     };
 
@@ -72,16 +85,7 @@ const HomePage: FC = (): ReactElement => {
             <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
             <CategoryButton handleCategoryButton={handleShirtButton} image={image.shirt} altImage={'Shirt'} />
           </div>
-          <div className="row justify-content-md-center" style={{ marginLeft: '3rem' }}>
-            <div className="col-auto">
-              <p style={{ fontWeight: 'bold' }}>{category?.toUpperCase()}</p>
-            </div>
-            {dataUser && (
-              <div className="col-auto">
-                <p> {dataUser.length} de produse</p>
-              </div>
-            )}
-          </div>
+          {categoryAndNrOfProducts()}
           {checkIsLoading()}
         </div>
       </div>

@@ -14,7 +14,7 @@ import './adminPage.css';
 
 const AdminPage: FC = (): ReactElement => {
   const [addData, setAddData] = useState<DataItemProps>({
-    category: '',
+    category: 'shirt',
     brand: '',
     image: '',
     price: '',
@@ -46,9 +46,11 @@ const AdminPage: FC = (): ReactElement => {
         });
       setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
     } catch (error) {
+      console.log(error);
       return;
     }
   };
+  console.log(category);
 
   const handleAddDataButton = () => {
     setAddNewData(!addNewData);

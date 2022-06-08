@@ -24,17 +24,19 @@ const CategoryToEdit = () => {
 
   const handlePantsButton = async () => {
     setIsLoading(true);
+    setSelectedItem(false);
     setCategory('pants');
   };
 
   const handleShirtButton = async () => {
     setIsLoading(true);
+    setSelectedItem(false);
     setCategory('shirt');
   };
 
   const handleSelectedItem = (data: DataItemProps, id: string) => {
     setAddData(data);
-    setSelectedItem(!selectedItem);
+    setSelectedItem(true);
     setId(id);
   };
 

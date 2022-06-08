@@ -1,7 +1,7 @@
 import { useEffect, useState, FC, ReactElement } from 'react';
 import { db } from '../../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
-import { DataItemProps } from '../../interface/interface';
+import { DataItemProps } from '../../interface/dataItemProps';
 import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';

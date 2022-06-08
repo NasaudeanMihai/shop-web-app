@@ -7,7 +7,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
 import AddOrEditData from '../AddOrEditData/AddOrEditData';
-import { DataItemProps } from '../../interface/interface';
+import { DataItemProps } from '../../interface/dataItemProps';
 
 import './adminPage.css';
 

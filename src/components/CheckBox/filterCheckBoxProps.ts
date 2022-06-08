@@ -1,4 +1,4 @@
 export interface FilterCheckBoxProps {
   name: string;
-  handleCheckBoxOnChange: () => void;
+  handleCheckBoxOnChange: (event: any) => void;
 }

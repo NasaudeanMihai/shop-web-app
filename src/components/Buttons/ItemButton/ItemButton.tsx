@@ -9,7 +9,8 @@ const ItemButton: FC<ItemButtonProps> = ({ handleItemButton, item, altImage }: I
         style={{ marginBottom: '1rem', marginRight: '1rem', marginLeft: '1rem' }}
         onClick={handleItemButton}>
         <img className="img" src={item.image} alt={altImage} />
-        <p>{item.price}</p>
+        <p>Brand: {item.brand}</p>
+        <p>Price: {item.price}$</p>
       </button>
     </div>
   );

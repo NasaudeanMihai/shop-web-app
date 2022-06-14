@@ -1,21 +1,13 @@
 import { useEffect, useState, FC, ReactElement } from 'react';
-import { db } from '../../firebase-config';
-import { collection, getDocs } from 'firebase/firestore';
-import { DataItemProps } from '../../interface/dataItemProps';
+
+import { DataItemProps, DataProps } from '../../interface/dataItemProps';
 import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import Loading from '../Loader/Loading';
 import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
-
+import { image } from '../../assets/image/category';
 import './homePage.css';
-
-const image = {
-  pants:
-    'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8amVhbnN8ZW58MHx8MHx8&auto=format&fit=crop&w=800',
-  shirt:
-    'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dCUyMHNoaXJ0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-};
 
 const HomePage: FC = (): ReactElement => {
   const [category, setCategory] = useState<string | null>(null);
@@ -54,9 +46,9 @@ const HomePage: FC = (): ReactElement => {
     } else {
       return (
         <div className="row align-items-start">
-          {dataUser.map((item: DataItemProps) => {
-            if (item) {
-              return <ItemButton handleItemButton={() => null} item={item} altImage={item.brand} />;
+          {dataUser.map(({ data }: DataProps) => {
+            if (data) {
+              return <ItemButton handleItemButton={() => null} item={data} altImage={data.brand} />;
             }
           })}
         </div>

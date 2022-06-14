@@ -43,8 +43,8 @@ const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
         </div>
       </div>
 
-      <button onClick={handleSendButton}>
-        <p>Send</p>
+      <button onClick={handleSendButton} style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <p style={{ alignSelf: 'center' }}>Send</p>
       </button>
     </div>
   );

@@ -1,3 +1,8 @@
+export interface DataProps {
+  id: string;
+  data: DataItemProps;
+}
+
 export interface DataItemProps {
   category: string;
   brand: string;

@@ -11,7 +11,7 @@ const UserCredentialInput: FC<UserCredentialProps> = ({
   name,
 }: UserCredentialProps): ReactElement => {
   return (
-    <div className="input-group-4" style={{ marginBottom: 10 }}>
+    <div className="input-group-4 wrapper-user-input">
       <span className="input-group-text-2">{label}</span>
       <input
         name={name}
@@ -19,7 +19,7 @@ const UserCredentialInput: FC<UserCredentialProps> = ({
         aria-label={ariaLabel}
         className="form-control"
         placeholder={placeholder}
-        onChange={(event: any) =>
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           setUserCredential({ ...userCredential, ...{ [event.target.name]: event.target.value } })
         }
       />

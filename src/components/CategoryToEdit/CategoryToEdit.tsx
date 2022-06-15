@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { DataProps, DataItemProps } from '../../interface/dataItemProps';
+import { SetStateAction, useEffect, useState } from 'react';
+import { DataProps, DataItemProps, FetchedDataProps } from '../../interface/dataItemProps';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { image } from '../../assets/image/category';
@@ -18,7 +18,7 @@ const CategoryToEdit = () => {
   });
   const [category, setCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [dataUser, setDataUser] = useState<any>([]);
+  const [dataUser, setDataUser] = useState<FetchedDataProps[]>([]);
   const [selectedItem, setSelectedItem] = useState(false);
   const [id, setId] = useState('');
 

@@ -50,7 +50,6 @@ const AdminPage: FC = (): ReactElement => {
       return;
     }
   };
-  console.log(category);
 
   const handleAddDataButton = () => {
     setAddNewData(!addNewData);

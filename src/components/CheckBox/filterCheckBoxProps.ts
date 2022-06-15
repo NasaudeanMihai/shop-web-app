@@ -1,4 +1,4 @@
 export interface FilterCheckBoxProps {
   name: string;
-  handleCheckBoxOnChange: (event: any) => void;
+  handleCheckBoxOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

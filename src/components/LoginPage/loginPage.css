@@ -16,13 +16,13 @@
   width: 20%;
 }
 .h1 {
-  margin-bottom: 40;
+  margin-bottom: 40px;
 }
 
 .wrapper-welcome {
-  margin-top: 20;
-  padding-bottom: 40;
+  margin-top: 20px;
+  padding-bottom: 40px;
   border: '2px solid #eee';
   background-color: 'white';
-  padding-top: 20;
+  padding-top: 20px;
 }

@@ -4,6 +4,6 @@ export interface UserCredentialProps {
   inputType: string;
   ariaLabel: string;
   placeholder?: string;
-  userCredential: {};
-  setUserCredential: (event: any) => void;
+  userCredential: { email: string; password: string; name: string };
+  setUserCredential: (event: { email: string; password: string; name: string }) => void;
 }

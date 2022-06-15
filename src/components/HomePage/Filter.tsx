@@ -5,17 +5,34 @@ import { FilterProps } from './FilterProps';
 const Filter: FC<FilterProps> = ({ setSelectedFilter, selectedFilter }: FilterProps): ReactElement => {
   const size = ['X', 'M', 'L', 'XL'];
   const price = ['< 10$', '10$ - 100$', '> 100$'];
-  const handleNikeCheckBox = (event: any) =>
-    setSelectedFilter({ ...selectedFilter, ...{ nike: !selectedFilter['nike'] } });
+  const handleNikeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      setSelectedFilter([...selectedFilter, 'nike']);
+    } else {
+      const uncheckBox = selectedFilter.filter(item => item !== 'nike');
+      setSelectedFilter(uncheckBox);
+    }
+  };
 
-  const handleAdidasCheckBox = (event: any) =>
-    setSelectedFilter({ ...selectedFilter, ...{ adidas: !selectedFilter['adidas'] } });
+  const handleAdidasCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      setSelectedFilter([...selectedFilter, 'adidas']);
+    } else {
+      const uncheckBox = selectedFilter.filter(item => item !== 'adidas');
+      setSelectedFilter(uncheckBox);
+    }
+  };
 
-  const handleMustangCheckBox = (event: any) =>
-    setSelectedFilter({ ...selectedFilter, ...{ mustang: !selectedFilter['mustang'] } });
+  const handleMustangCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      setSelectedFilter([...selectedFilter, 'mustang']);
+    } else {
+      const uncheckBox = selectedFilter.filter(item => item !== 'mustang');
+      setSelectedFilter(uncheckBox);
+    }
+  };
 
-  const handlePriceCheckBox = (event: any) => console.log(event.name);
-  // setSelectedFilter({ ...selectedFilter, ...{ [event.name]: !selectedFilter[event.name] } });
+  const handlePriceCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => event.target.name;
 
   return (
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
@@ -31,9 +48,9 @@ const Filter: FC<FilterProps> = ({ setSelectedFilter, selectedFilter }: FilterPr
         }}>
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
         <div className="col">
-          <FilterCheckBox name={'Nike'} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
-          <FilterCheckBox name={'Adidas'} handleCheckBoxOnChange={event => handleAdidasCheckBox(event)} />
-          <FilterCheckBox name={'Mustang'} handleCheckBoxOnChange={event => handleMustangCheckBox(event)} />
+          <FilterCheckBox name={'nike'} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
+          <FilterCheckBox name={'adidas'} handleCheckBoxOnChange={event => handleAdidasCheckBox(event)} />
+          <FilterCheckBox name={'mustang'} handleCheckBoxOnChange={event => handleMustangCheckBox(event)} />
         </div>
       </div>
       <div

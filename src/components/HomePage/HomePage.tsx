@@ -1,30 +1,24 @@
-import { useEffect, useState, FC, ReactElement } from 'react';
+import { useEffect, useState, FC, ReactElement, useCallback } from 'react';
 
-import { DataProps } from '../../interface/dataItemProps';
+import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
+
 import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import Loading from '../Loader/Loading';
-import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
+import { getFilterData } from '../../utils/getFilterData';
+import { DataProps, FetchedDataProps } from '../../interface/dataItemProps';
+
 import { image } from '../../assets/image/category';
 import './homePage.css';
-import { SelectedFilterProps } from '../../interface/getFilterData';
-import { getFilterData } from '../../utils/getFilterData';
 
 const HomePage: FC = (): ReactElement => {
   const [category, setCategory] = useState<string | null>(null);
-  const [dataUser, setDataUser] = useState<any>([]);
+  const [dataUser, setDataUser] = useState<FetchedDataProps[]>([]);
+  const [dataUserList, setDataUserList] = useState<FetchedDataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedFilter, setSelectedFilter] = useState<SelectedFilterProps>({
-    nike: false,
-    adidas: false,
-    mustang: false,
-    ['< 10$']: false,
-    ['10$ - 100$']: false,
-    ['> 100$']: false,
-  });
+  const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
 
-  console.log('here', selectedFilter['< 10$']);
   const handlePantsButton = async () => {
     setIsLoading(true);
     setCategory('pants');
@@ -57,7 +51,7 @@ const HomePage: FC = (): ReactElement => {
     } else {
       return (
         <div className="row align-items-start">
-          {dataUser.map(({ data }: DataProps) => {
+          {dataUserList.map(({ data }: DataProps) => {
             if (data) {
               return <ItemButton handleItemButton={() => null} item={data} altImage={data.brand} />;
             }
@@ -67,21 +61,32 @@ const HomePage: FC = (): ReactElement => {
     }
   };
 
-  useEffect(() => {
-    getFilterData(dataUser, setDataUser, setIsLoading, category, selectedFilter);
-  }, [getFilterData, dataUser, setDataUser, setIsLoading, category, selectedFilter]);
+  const getFilteredData = useCallback(() => {
+    if (selectedFilter.length !== 0) {
+      getFilterData(dataUser, setDataUserList, setIsLoading, category, selectedFilter);
+    } else {
+      setDataUserList(dataUser);
+    }
+  }, [category, dataUser, selectedFilter]);
 
   useEffect(() => {
     const getDataFromFirestore = async () => {
       if (category) {
         setDataUser(await getCategoryClothesFromFirestore(category));
         setIsLoading(false);
+        setCategory(null);
       }
     };
 
     getDataFromFirestore();
   }, [category]);
 
+  useEffect(() => {
+    setDataUserList(dataUser);
+  }, [dataUser]);
+  useEffect(() => {
+    getFilteredData();
+  }, [getFilteredData]);
   return (
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>

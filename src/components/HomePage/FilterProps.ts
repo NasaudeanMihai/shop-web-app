@@ -1,4 +1,4 @@
 export interface FilterProps {
-  selectedFilter: any;
-  setSelectedFilter: (selectedFilter: any) => void;
+  selectedFilter: string[];
+  setSelectedFilter: (selectedFilter: string[]) => void;
 }

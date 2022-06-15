@@ -18,6 +18,7 @@ const UserCredentialInput: FC<UserCredentialProps> = ({
         type={inputType}
         aria-label={ariaLabel}
         className="form-control"
+        placeholder={placeholder}
         onChange={(event: any) =>
           setUserCredential({ ...userCredential, ...{ [event.target.name]: event.target.value } })
         }

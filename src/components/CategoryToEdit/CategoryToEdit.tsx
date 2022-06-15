@@ -84,7 +84,7 @@ const CategoryToEdit = () => {
   }, [category]);
 
   return (
-    <div style={{ paddingBottom: 100 }}>
+    <div className="wrapper-category">
       <div className="row align-items-center">
         <h2>Select Category</h2>
         <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />

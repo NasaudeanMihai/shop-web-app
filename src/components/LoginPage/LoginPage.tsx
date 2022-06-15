@@ -61,16 +61,8 @@ const LoginPage = () => {
       />
       <div className="container">
         <div className="col">
-          <div
-            className="row"
-            style={{
-              marginTop: 20,
-              paddingBottom: 40,
-              border: '2px solid #eee',
-              backgroundColor: 'white',
-              paddingTop: 20,
-            }}>
-            <h1 style={{ marginBottom: 40 }}>Welcome</h1>
+          <div className="row wrapper-welcome">
+            <h1>Welcome</h1>
 
             <div className="col">
               <UserCredentialInput

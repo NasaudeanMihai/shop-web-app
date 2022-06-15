@@ -1,8 +1,12 @@
 .wrapper-home-page {
   margin-top: 20px;
   padding-bottom: 20px;
+  background-color: '#f2f2f7';
 }
-
+.wrapper-home-category {
+  background-color: 'transparent';
+  padding-top: 20;
+}
 .img {
   width: 100px;
   height: 100px;

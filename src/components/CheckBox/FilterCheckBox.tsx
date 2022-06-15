@@ -13,7 +13,7 @@ const FilterCheckBox: FC<FilterCheckBoxProps> = ({
         type="checkbox"
         onChange={event => handleCheckBoxOnChange(event)}
       />
-      <p style={{ textAlign: 'center', marginLeft: 10 }}>{name}</p>
+      <p>{name}</p>
     </div>
   );
 };

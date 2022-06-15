@@ -63,12 +63,12 @@ const AdminPage: FC = (): ReactElement => {
 
   if (userData) {
     return (
-      <div className="container" style={{ marginTop: '3rem' }}>
+      <div className="container">
         <div className="row justify-content-center">
-          <button onClick={handleEditDataButton} className="sign-up-bottom" style={{ marginRight: '1rem' }}>
+          <button onClick={handleEditDataButton} className="sign-up-bottom">
             <p className="sign-up-bottom-text">Edit</p>
           </button>
-          <button onClick={handleAddDataButton} className="sign-up-bottom" style={{ marginRight: '1rem' }}>
+          <button onClick={handleAddDataButton} className="sign-up-bottom">
             <p className="sign-up-bottom-text">Add</p>
           </button>
           <button onClick={handleLogoutButton} className="sign-up-bottom">

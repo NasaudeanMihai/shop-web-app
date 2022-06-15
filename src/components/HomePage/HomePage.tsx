@@ -83,10 +83,10 @@ const HomePage: FC = (): ReactElement => {
   }, [category]);
 
   return (
-    <div className="wrapper-home-page container" style={{ backgroundColor: '#f2f2f7' }}>
+    <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-        <div className="col align-items-start" style={{ backgroundColor: 'transparent', paddingTop: 20 }}>
+        <div className="wrapper-home-category col align-items-start">
           <div className="row align-items-center">
             <h2>Select Category</h2>
             <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />

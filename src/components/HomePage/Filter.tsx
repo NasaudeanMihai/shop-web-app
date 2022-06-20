@@ -1,38 +1,45 @@
 import { FC, ReactElement } from 'react';
 import FilterCheckBox from '../CheckBox/FilterCheckBox';
-import { FilterProps } from './FilterProps';
+import { FilterProps, PriceFilterProps } from './FilterProps';
 
-const Filter: FC<FilterProps> = ({ setSelectedFilter, selectedFilter }: FilterProps): ReactElement => {
-  const size = ['X', 'M', 'L', 'XL'];
-  const price = ['< 10$', '10$ - 100$', '> 100$'];
+const price = [
+  { name: '<= 10$', value: 10 },
+  { name: '10$ - 100$', value: '10and100' },
+  { name: '>= 100$', value: 100 },
+];
+
+const category = [
+  { name: 'nike', value: 'nike' },
+  { name: 'adidas', value: 'adidas' },
+  { name: 'mustang', value: 'mustang' },
+];
+
+const Filter: FC<FilterProps> = ({
+  setSelectedBrandFilter,
+  selectedBrandFilter,
+  selectedPriceFilter,
+  setSelectedPriceFilter,
+}: FilterProps): ReactElement => {
   const handleNikeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      setSelectedFilter([...selectedFilter, 'nike']);
+      setSelectedBrandFilter([...selectedBrandFilter, event.target.name]);
     } else {
-      const uncheckBox = selectedFilter.filter(item => item !== 'nike');
-      setSelectedFilter(uncheckBox);
+      const uncheckBox = selectedBrandFilter.filter(item => item !== event.target.name);
+      setSelectedBrandFilter(uncheckBox);
     }
   };
 
-  const handleAdidasCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      setSelectedFilter([...selectedFilter, 'adidas']);
+      setSelectedPriceFilter([
+        ...selectedPriceFilter,
+        { name: event.target.name, value: event.target.name === '10' ? 10 : event.target.name === '100' ? 100 : 0 },
+      ]);
     } else {
-      const uncheckBox = selectedFilter.filter(item => item !== 'adidas');
-      setSelectedFilter(uncheckBox);
+      const uncheckBox = selectedPriceFilter.filter(({ name }: PriceFilterProps) => name !== event.target.name);
+      setSelectedPriceFilter(uncheckBox);
     }
   };
-
-  const handleMustangCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      setSelectedFilter([...selectedFilter, 'mustang']);
-    } else {
-      const uncheckBox = selectedFilter.filter(item => item !== 'mustang');
-      setSelectedFilter(uncheckBox);
-    }
-  };
-
-  const handlePriceCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => event.target.name;
 
   return (
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
@@ -48,25 +55,8 @@ const Filter: FC<FilterProps> = ({ setSelectedFilter, selectedFilter }: FilterPr
         }}>
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
         <div className="col">
-          <FilterCheckBox name={'nike'} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
-          <FilterCheckBox name={'adidas'} handleCheckBoxOnChange={event => handleAdidasCheckBox(event)} />
-          <FilterCheckBox name={'mustang'} handleCheckBoxOnChange={event => handleMustangCheckBox(event)} />
-        </div>
-      </div>
-      <div
-        className="row"
-        style={{
-          marginTop: 20,
-          paddingBottom: 20,
-          border: '2px solid #eee',
-          justifyContent: 'flex-start',
-          backgroundColor: 'white',
-          borderRadius: 10,
-        }}>
-        <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Size:</p>
-        <div className="col">
-          {size.map(item => (
-            <FilterCheckBox name={item} handleCheckBoxOnChange={() => null} />
+          {category.map(item => (
+            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
           ))}
         </div>
       </div>
@@ -83,7 +73,7 @@ const Filter: FC<FilterProps> = ({ setSelectedFilter, selectedFilter }: FilterPr
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Price:</p>
         <div className="col">
           {price.map(item => (
-            <FilterCheckBox name={item} handleCheckBoxOnChange={event => handlePriceCheckBox(event)} />
+            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handlePriceCheckBox(event)} />
           ))}
         </div>
       </div>

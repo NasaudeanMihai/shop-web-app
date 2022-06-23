@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="container" style={{ marginTop: '5rem' }}>
+    <div className="container">
       <h2>Loading ...</h2>
     </div>
   );

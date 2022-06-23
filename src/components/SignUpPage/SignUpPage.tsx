@@ -12,7 +12,11 @@ import './signUpPage.css';
 
 const SignUpPage: FC = (): ReactElement => {
   const { setUserData } = useContext<AuthContextInterface>(AuthContext);
-  const [userCredential, setUserCredential] = useState({ email: '', name: '', password: '' });
+  const [userCredential, setUserCredential] = useState<{ email: string; password: string; name: string }>({
+    email: '',
+    name: '',
+    password: '',
+  });
   const { email, name, password } = userCredential;
   const auth = getAuth();
   const navigate = useNavigate();

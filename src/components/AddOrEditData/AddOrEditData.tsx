@@ -3,7 +3,7 @@ import { AddDataProps } from './AddOrEditDataProps';
 const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
   return (
     <div className="col">
-      <div style={{ marginTop: '1rem' }}>
+      <div className="wrapper-input">
         <p>Brand</p>
         <input
           value={addData.brand}
@@ -11,7 +11,7 @@ const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
           onChange={event => setAddData({ ...addData, ...{ brand: event.target.value } })}
         />
       </div>
-      <div style={{ marginTop: '1rem' }}>
+      <div className="wrapper-input">
         <p>Image address</p>
         <input
           value={addData.image}
@@ -20,7 +20,7 @@ const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
         />
       </div>
 
-      <div>
+      <div className="wrapper-input">
         <p>Price</p>
         <input
           value={addData.price}
@@ -28,7 +28,7 @@ const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
           onChange={event => setAddData({ ...addData, ...{ price: event.target.value.toLowerCase() } })}
         />
       </div>
-      <div style={{ marginTop: '1rem' }}>
+      <div className="wrapper-input">
         <div className="input-group mb-3">
           <label className="input-group-text">Category</label>
           <select
@@ -43,8 +43,8 @@ const AddData = ({ addData, setAddData, handleSendButton }: AddDataProps) => {
         </div>
       </div>
 
-      <button onClick={handleSendButton} style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <p style={{ alignSelf: 'center' }}>Send</p>
+      <button onClick={handleSendButton}>
+        <p>Send</p>
       </button>
     </div>
   );

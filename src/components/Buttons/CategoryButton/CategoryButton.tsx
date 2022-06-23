@@ -8,10 +8,7 @@ const CategoryButton: FC<CategoryButtonProps> = ({
 }: CategoryButtonProps): ReactElement => {
   return (
     <div className="col">
-      <button
-        className="btn"
-        style={{ marginBottom: '1rem', marginRight: '1rem', marginLeft: '1rem' }}
-        onClick={handleCategoryButton}>
+      <button className="btn" onClick={handleCategoryButton}>
         <img className="img" src={image} alt={altImage} />
       </button>
     </div>

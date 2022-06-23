@@ -6,18 +6,20 @@ import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import Loading from '../Loader/Loading';
-import { getFilterData } from '../../utils/getFilterData';
+import { getFilterBrandData } from '../../utils/getFilterData';
 import { DataProps, FetchedDataProps } from '../../interface/dataItemProps';
 
 import { image } from '../../assets/image/category';
 import './homePage.css';
+import { PriceFilterProps } from './FilterProps';
 
 const HomePage: FC = (): ReactElement => {
   const [category, setCategory] = useState<string | null>(null);
   const [dataUser, setDataUser] = useState<FetchedDataProps[]>([]);
   const [dataUserList, setDataUserList] = useState<FetchedDataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
 
   const handlePantsButton = async () => {
     setIsLoading(true);
@@ -62,12 +64,12 @@ const HomePage: FC = (): ReactElement => {
   };
 
   const getFilteredData = useCallback(() => {
-    if (selectedFilter.length !== 0) {
-      getFilterData(dataUser, setDataUserList, setIsLoading, category, selectedFilter);
+    if (selectedBrandFilter.length !== 0 || selectedPriceFilter.length !== 0) {
+      getFilterBrandData(dataUser, setDataUserList, setIsLoading, category, selectedBrandFilter, selectedPriceFilter);
     } else {
       setDataUserList(dataUser);
     }
-  }, [category, dataUser, selectedFilter]);
+  }, [category, dataUser, selectedBrandFilter, selectedPriceFilter]);
 
   useEffect(() => {
     const getDataFromFirestore = async () => {
@@ -84,18 +86,25 @@ const HomePage: FC = (): ReactElement => {
   useEffect(() => {
     setDataUserList(dataUser);
   }, [dataUser]);
+
   useEffect(() => {
     getFilteredData();
   }, [getFilteredData]);
+
   return (
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
-        <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-        <div className="wrapper-home-category col align-items-start">
+        <Filter
+          selectedBrandFilter={selectedBrandFilter}
+          setSelectedBrandFilter={setSelectedBrandFilter}
+          selectedPriceFilter={selectedPriceFilter}
+          setSelectedPriceFilter={setSelectedPriceFilter}
+        />
+        <div className="wrapper-home-category col align-items-center">
           <div className="row align-items-center">
             <h2>Select Category</h2>
-            <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
             <CategoryButton handleCategoryButton={handleShirtButton} image={image.shirt} altImage={'Shirt'} />
+            <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
           </div>
           {categoryAndNrOfProducts()}
           {checkIsLoading()}

@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/authContext';
 
 const Tabs = () => {
+  const { itemsAddedToCart } = useContext(AuthContext);
+
   useEffect(() => {
     document.body.style.background = '#f2f2f7';
   }, []);
@@ -28,6 +31,13 @@ const Tabs = () => {
           Profile
         </li>
       </Link>
+      {itemsAddedToCart.length !== 0 && (
+        <Link className="links-btn wrapper-links profile-link" to="/cart">
+          <li className="links-btn" style={{ fontSize: 20 }}>
+            Cart {itemsAddedToCart.length !== 0 && itemsAddedToCart.length}
+          </li>
+        </Link>
+      )}
     </div>
   );
 };

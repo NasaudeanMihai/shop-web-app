@@ -1,11 +1,11 @@
 import { useEffect, useState, FC, ReactElement, useCallback } from 'react';
-import { useNavigate, createSearchParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
 
 import Filter from './Filter';
 import CategoryButton from '../Buttons/CategoryButton/CategoryButton';
-import ItemButton from '../Buttons/ItemButton/ItemButton';
+
 import Loading from '../Loader/Loading';
 import { getFilterBrandData } from '../../utils/getFilterData';
 import { DataProps, FetchedDataProps } from '../../interface/dataItemProps';
@@ -22,8 +22,6 @@ const HomePage: FC = (): ReactElement => {
   const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
   const [selectedOption, setSelectedOption] = useState<string>('alphabetic');
-
-  let navigate = useNavigate();
 
   const handlePantsButton = () => {
     setIsLoading(true);

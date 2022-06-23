@@ -15,15 +15,26 @@ const ItemPage: FC = (): ReactElement => {
           <h1>Items Added {itemsAddedToCart.length}</h1>
         </div>
       </div>
-      <div className="col align-items-start wrapper-images">
-        {itemsAddedToCart.map(item => (
+      <div className=" wrapper-images">
+        {itemsAddedToCart.map((item, index) => (
           <div className="row wrapper-img-details">
-            <div className="col">
+            <div className="col-2">
               <img className="img rounded mx-auto d-block" src={item.image} alt={'woods'} />
             </div>
-            <div className="col justify-content-center">
+            <div className="col-2 justify-content-center">
               <h3>{item.brand}</h3>
               <h5>Price: {item.price}$</h5>
+            </div>
+            <div className="col-8 align-self-center">
+              <button
+                onClick={() => {
+                  let cloneAddedItems = itemsAddedToCart;
+                  cloneAddedItems.splice(index, 1);
+                  setItemsAddedToCart(cloneAddedItems);
+                }}
+                className="btn btn-danger">
+                delete
+              </button>
             </div>
           </div>
         ))}

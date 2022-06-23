@@ -20,13 +20,14 @@ const HomePage: FC = (): ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
+  const [selectedOption, setSelectedOption] = useState<string>('alphabetic');
 
-  const handlePantsButton = async () => {
+  const handlePantsButton = () => {
     setIsLoading(true);
     setCategory('pants');
   };
 
-  const handleShirtButton = async () => {
+  const handleShirtButton = () => {
     setIsLoading(true);
     setCategory('shirt');
   };
@@ -34,13 +35,20 @@ const HomePage: FC = (): ReactElement => {
   const categoryAndNrOfProducts = () => {
     if (dataUser) {
       return (
-        <div className="row justify-content-md-center" style={{ marginLeft: '3rem' }}>
-          <div className="col-auto">
-            <p style={{ fontWeight: 'bold' }}>{category?.toUpperCase()}</p>
-          </div>
-
+        <div className="row justify-content-between align-items-center w-100">
           <div className="col-auto">
             <p> {dataUser.length} de produse</p>
+          </div>
+
+          <div className="col-auto mb-3">
+            <select
+              defaultValue={'alphabetic'}
+              className="form-select "
+              id="inputGroupSelect01"
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setSelectedOption(event.target.value)}>
+              <option value="alphabetic">A - Z</option>
+              <option value="price">Price</option>
+            </select>
           </div>
         </div>
       );
@@ -86,6 +94,19 @@ const HomePage: FC = (): ReactElement => {
   useEffect(() => {
     setDataUserList(dataUser);
   }, [dataUser]);
+  console.log(selectedOption);
+  useEffect(() => {
+    if (selectedOption !== 'price') {
+      const cloneDataUserList = dataUserList.sort(
+        (item1, item2) => parseInt(item1.data.price) - parseInt(item2.data.price),
+      );
+      setDataUserList(cloneDataUserList);
+    }
+    if (selectedOption !== 'alphabetic') {
+      const cloneDataUserList = dataUserList.sort((item1, item2) => item1.data.brand.localeCompare(item2.data.brand));
+      setDataUserList(cloneDataUserList);
+    }
+  }, [dataUserList, selectedOption]);
 
   useEffect(() => {
     getFilteredData();

@@ -24,7 +24,7 @@ const Filter: FC<FilterProps> = ({
     if (event.target.checked) {
       setSelectedBrandFilter([...selectedBrandFilter, event.target.name]);
     } else {
-      const uncheckBox = selectedBrandFilter.filter(item => item !== event.target.name);
+      const uncheckBox = selectedBrandFilter.filter((item: string) => item !== event.target.name);
       setSelectedBrandFilter(uncheckBox);
     }
   };

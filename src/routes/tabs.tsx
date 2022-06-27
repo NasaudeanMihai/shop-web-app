@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/authContext';
+import { CartContext } from '../context/cartContext';
 
 const Tabs = () => {
-  const { itemsAddedToCart } = useContext(AuthContext);
+  const { itemsAddedToCart } = useContext(CartContext);
 
   useEffect(() => {
     document.body.style.background = '#f2f2f7';

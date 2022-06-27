@@ -4,12 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { mockSize } from './mockSize';
 
 import './itemPage.css';
-import { AuthContext } from '../../context/authContext';
+import { CartContext } from '../../context/cartContext';
 
 const ItemPage: FC = (): ReactElement => {
   const location = useLocation();
   const { data }: any = location.state;
-  const { itemsAddedToCart, setItemsAddedToCart } = useContext(AuthContext);
+  const { itemsAddedToCart, setItemsAddedToCart } = useContext(CartContext);
 
   return (
     <div className="container-lg wrapper-container">

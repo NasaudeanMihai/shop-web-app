@@ -1,12 +1,18 @@
 import { FC, ReactElement, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext';
+import { CartContext } from '../../context/cartContext';
 
 import './CartPage.css';
 
 const ItemPage: FC = (): ReactElement => {
   let navigate = useNavigate();
-  const { itemsAddedToCart, setItemsAddedToCart } = useContext(AuthContext);
+  const { itemsAddedToCart, setItemsAddedToCart } = useContext(CartContext);
+
+  const handleDeleteItemButton = (index: number) => {
+    let cloneAddedItems = itemsAddedToCart;
+    cloneAddedItems.splice(index, 1);
+    setItemsAddedToCart([...cloneAddedItems]);
+  };
 
   return (
     <div className="container-lg wrapper-container">
@@ -16,7 +22,7 @@ const ItemPage: FC = (): ReactElement => {
         </div>
       </div>
       <div className=" wrapper-images">
-        {itemsAddedToCart.map((item, index) => (
+        {itemsAddedToCart?.map((item, index) => (
           <div className="row wrapper-img-details">
             <div className="col-2">
               <img className="img rounded mx-auto d-block" src={item.image} alt={'woods'} />
@@ -26,13 +32,7 @@ const ItemPage: FC = (): ReactElement => {
               <h5>Price: {item.price}$</h5>
             </div>
             <div className="col-8 align-self-center">
-              <button
-                onClick={() => {
-                  let cloneAddedItems = itemsAddedToCart;
-                  cloneAddedItems.splice(index, 1);
-                  setItemsAddedToCart(cloneAddedItems);
-                }}
-                className="btn btn-danger">
+              <button onClick={() => handleDeleteItemButton(index)} className="btn btn-danger">
                 delete
               </button>
             </div>

@@ -9,7 +9,7 @@ const Tabs = () => {
     document.body.style.background = '#f2f2f7';
   }, []);
   return (
-    <div className="row justify-content-end" style={{ backgroundColor: 'white', paddingRight: 30 }}>
+    <div className="row justify-content-end" style={{ backgroundColor: '#f2f2f7', paddingRight: 30 }}>
       <Link className="links-btn wrapper-links" to="/">
         <li className="links-btn li-btn" style={{ fontSize: 20 }}>
           Home

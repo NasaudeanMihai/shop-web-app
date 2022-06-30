@@ -15,6 +15,7 @@ import './homePage.css';
 import { PriceFilterProps } from './FilterProps';
 
 import PopUpButton from '../../components/PopUpButton/PopUpButton';
+import NewsLetter from '../NewsLetter/NewsLetter';
 
 const HomePage: FC = (): ReactElement => {
   const [category, setCategory] = useState<string | null>(null);
@@ -137,11 +138,9 @@ const HomePage: FC = (): ReactElement => {
           </div>
         </div>
       </div>
-      <div className="row" style={{ backgroundColor: 'transparent' }}>
-        <p>Slider</p>
-      </div>
-      <div className="row" style={{ backgroundColor: 'transparent' }}>
-        <p>dasda</p>
+      <NewsLetter />
+      <div className="row">
+        <div className="container"></div>
       </div>
     </div>
   );

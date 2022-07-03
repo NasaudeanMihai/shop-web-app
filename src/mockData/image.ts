@@ -1,4 +1,4 @@
-export const mockData = [
+export const mockDataImage = [
   {
     value: 0,
     img: 'https://images.unsplash.com/photo-1489595672898-26572ba975a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGNhcnxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60',

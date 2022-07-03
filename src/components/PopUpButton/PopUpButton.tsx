@@ -10,7 +10,7 @@ const PopUpButton = ({ title, options }: PopUpButtonProps) => {
         onMouseEnter={() => setIsOptionVisible(true)}
         onMouseLeave={() => setIsOptionVisible(false)}
         className={`btn align-items-center ${isOptionVisible ? 'title-button-border' : 'title-button'}`}>
-        {title}
+        <p className="title-button-text">{title}</p>
       </button>
       {isOptionVisible && (
         <div

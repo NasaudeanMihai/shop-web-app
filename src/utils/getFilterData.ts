@@ -1,19 +1,19 @@
-import { PriceFilterProps } from '../components/HomePage/FilterProps';
+import { CategoryProps, PriceFilterProps } from '../components/Filter/FilterProps';
 import { DataProps } from '../interface/dataItemProps';
 import { FetchedDataProps } from '../interface/dataItemProps';
 
 export const getFilterBrandData = async (
-  dataUser: FetchedDataProps[],
-  setDataUserList: (getFilteredData: FetchedDataProps[]) => void,
+  dataList: FetchedDataProps[],
+  setDataListFiltered: (getFilteredData: FetchedDataProps[]) => void,
   setIsLoading: (value: boolean) => void,
-  category: string | null,
+  category: CategoryProps | null,
   selectedBrandFilter: string[],
   selectedPriceFilter: Array<PriceFilterProps>,
 ) => {
   if (selectedBrandFilter.length !== 0) {
     let filteredItemByBrandList: Array<FetchedDataProps> = [];
     for (let i = 0; i < selectedBrandFilter.length; i++) {
-      const getBrandFilteredData = dataUser.filter(
+      const getBrandFilteredData = dataList.filter(
         ({ data }: DataProps) => data.brand.toLowerCase() === selectedBrandFilter[i].toLowerCase(),
       );
       filteredItemByBrandList = [...filteredItemByBrandList, ...getBrandFilteredData];
@@ -38,35 +38,35 @@ export const getFilterBrandData = async (
           filteredPriceItemList = [...filteredPriceItemList, ...getPriceFilteredData];
         }
       }
-      setDataUserList(filteredPriceItemList);
+      setDataListFiltered(filteredPriceItemList);
     } else {
-      setDataUserList(filteredItemByBrandList);
+      setDataListFiltered(filteredItemByBrandList);
     }
   } else if (selectedPriceFilter.length !== 0) {
     let priceItemList: Array<FetchedDataProps> = [];
     for (let i = 0; i < selectedPriceFilter.length; i++) {
       if (selectedPriceFilter[i].value <= 10 && selectedPriceFilter[i].value !== 0) {
-        const getPriceFilteredData = dataUser.filter(
+        const getPriceFilteredData = dataList.filter(
           ({ data }: DataProps) => !(selectedPriceFilter[i].value < parseInt(data.price)),
         );
         priceItemList = [...priceItemList, ...getPriceFilteredData];
       } else if (selectedPriceFilter[i].value >= 100) {
-        const getPriceFilteredData = dataUser.filter(
+        const getPriceFilteredData = dataList.filter(
           ({ data }: DataProps) => selectedPriceFilter[i].value < parseInt(data.price),
         );
         priceItemList = [...priceItemList, ...getPriceFilteredData];
       } else {
-        const getPriceFilteredData = dataUser.filter(
+        const getPriceFilteredData = dataList.filter(
           ({ data }: DataProps) => parseInt(data.price) > 10 && parseInt(data.price) < 100,
         );
         priceItemList = [...priceItemList, ...getPriceFilteredData];
       }
     }
-    setDataUserList(priceItemList);
+    setDataListFiltered(priceItemList);
   }
 
-  if (category) {
-    setDataUserList(dataUser);
+  if (category?.selected) {
+    setDataListFiltered(dataList);
     setIsLoading(false);
   }
 };

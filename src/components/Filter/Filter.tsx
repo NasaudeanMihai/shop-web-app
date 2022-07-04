@@ -1,25 +1,21 @@
 import { FC, ReactElement } from 'react';
 import FilterCheckBox from '../CheckBox/FilterCheckBox';
 import { FilterProps, PriceFilterProps } from './FilterProps';
-
-const price = [
-  { name: '<= 10$', value: 10 },
-  { name: '10$ - 100$', value: '10and100' },
-  { name: '>= 100$', value: 100 },
-];
-
-const category = [
-  { name: 'nike', value: 'nike' },
-  { name: 'adidas', value: 'adidas' },
-  { name: 'mustang', value: 'mustang' },
-];
+import RadioButton from '../RadioButton/RadioButton';
+import { mockBrand, mockCategory, mockPrice } from '../HomePage/mockData';
+import './filter.css';
 
 const Filter: FC<FilterProps> = ({
   setSelectedBrandFilter,
   selectedBrandFilter,
   selectedPriceFilter,
   setSelectedPriceFilter,
+  setCategory,
+  category,
 }: FilterProps): ReactElement => {
+  const handleRadioButtonOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory({ name: event.target.name, selected: true });
+  };
   const handleNikeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       setSelectedBrandFilter([...selectedBrandFilter, event.target.name]);
@@ -43,36 +39,30 @@ const Filter: FC<FilterProps> = ({
 
   return (
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
-      <div
-        className="row"
-        style={{
-          marginTop: 20,
-          paddingBottom: 20,
-          border: '2px solid #eee',
-          justifyContent: 'flex-start',
-          backgroundColor: 'white',
-          borderRadius: 10,
-        }}>
+      <div className="row wrapper-filter">
+        <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Category:</p>
+        <div className="col col-scroll">
+          {mockCategory.map(item => (
+            <RadioButton
+              item={item}
+              checked={category.name === item.name}
+              handleRadioButtonOnChange={event => handleRadioButtonOnChange(event)}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="row wrapper-filter">
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
-        <div className="col">
-          {category.map(item => (
+        <div className="col col-scroll">
+          {mockBrand.map(item => (
             <FilterCheckBox item={item} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
           ))}
         </div>
       </div>
-      <div
-        className="row"
-        style={{
-          marginTop: 20,
-          paddingBottom: 20,
-          border: '2px solid #eee',
-          justifyContent: 'flex-start',
-          backgroundColor: 'white',
-          borderRadius: 10,
-        }}>
+      <div className="row wrapper-filter">
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Price:</p>
-        <div className="col">
-          {price.map(item => (
+        <div className="col col-scroll">
+          {mockPrice.map(item => (
             <FilterCheckBox item={item} handleCheckBoxOnChange={event => handlePriceCheckBox(event)} />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import { FC, ReactElement } from 'react';
 import { TopProductsItemProps } from './topProductsProps';
+import { IoCartOutline } from 'react-icons/io5';
 
 const TopProductsItem: FC<TopProductsItemProps> = ({
   image,
@@ -11,7 +12,14 @@ const TopProductsItem: FC<TopProductsItemProps> = ({
         <img src={image} className={`img-background `} alt="..." />
         <div className="wrapper-button-cart">
           <button onClick={handleAddToCartItem} className="btn add-btn">
-            <p className="fw-bold add-cart-text">ADD TO CART</p>
+            <div className="row">
+              <div className="col-9 justify-content-center align-items-center">
+                <p className="fw-bold add-cart-text">ADD TO CART</p>
+              </div>
+              <div className="col-1">
+                <IoCartOutline />
+              </div>
+            </div>
           </button>
         </div>
       </div>

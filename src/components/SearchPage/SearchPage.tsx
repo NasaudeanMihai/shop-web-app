@@ -15,7 +15,6 @@ const SearchPage: FC = (): ReactElement => {
   const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
 
-  console.log(dataListFiltered);
   const checkIsLoading = () => {
     if (isLoading) {
       return <Loading />;
@@ -50,7 +49,7 @@ const SearchPage: FC = (): ReactElement => {
   useEffect(() => {
     getFilteredData();
   }, [getFilteredData]);
-  console.log(category);
+
   useEffect(() => {
     const getDataFromFirestore = async () => {
       if (category.selected) {

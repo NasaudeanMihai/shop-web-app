@@ -1,4 +1,5 @@
 import { useEffect, useState, FC, ReactElement, useCallback } from 'react';
+import { useNavigate, createSearchParams, Link } from 'react-router-dom';
 
 import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
 
@@ -21,6 +22,8 @@ const HomePage: FC = (): ReactElement => {
   const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
   const [selectedOption, setSelectedOption] = useState<string>('alphabetic');
+
+  let navigate = useNavigate();
 
   const handlePantsButton = () => {
     setIsLoading(true);
@@ -63,8 +66,17 @@ const HomePage: FC = (): ReactElement => {
         <div className="row align-items-start">
           {dataUserList.map(({ data }: DataProps) => {
             if (data) {
-              return <ItemButton handleItemButton={() => null} item={data} altImage={data.brand} />;
+              return (
+                <div className="col">
+                  <Link className="btn" to="/item" state={{ data }}>
+                    <img className="img" src={data.image} alt={data.brand} />
+                    <p>Brand: {data.brand}</p>
+                    <p>Price: {data.price}$</p>
+                  </Link>
+                </div>
+              );
             }
+            return <></>;
           })}
         </div>
       );
@@ -94,7 +106,7 @@ const HomePage: FC = (): ReactElement => {
   useEffect(() => {
     setDataUserList(dataUser);
   }, [dataUser]);
-  console.log(selectedOption);
+
   useEffect(() => {
     if (selectedOption !== 'price') {
       const cloneDataUserList = dataUserList.sort(

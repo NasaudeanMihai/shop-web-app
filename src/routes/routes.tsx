@@ -1,10 +1,10 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
 
 import HomePage from '../components/HomePage/HomePage';
+import ItemPage from '../components/ItemPage/ItemPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import LoginPage from '../components/LoginPage/LoginPage';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
-
 const Routes = () => {
   return (
     <ReactRoutes>
@@ -12,6 +12,7 @@ const Routes = () => {
       <Route path="/signUp" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/admin" element={<AdminPage />} />
+      <Route path="/item" element={<ItemPage />} />
     </ReactRoutes>
   );
 };

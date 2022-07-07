@@ -1,0 +1,31 @@
+.wrapper-container {
+  margin-top: 2rem;
+}
+
+.offer-one {
+  padding: 3rem;
+  background-color: black;
+  color: white;
+}
+.offer-two {
+  padding: 3rem;
+  background-color: yellow;
+}
+
+.wrapper-top-seller {
+  margin-top: 1rem;
+  position: relative;
+}
+.wrapper-button-cart {
+  background-color: yellow;
+  position: absolute;
+  bottom: 0;
+}
+.add-cart-text {
+  color: black;
+  font-size: small;
+  margin: 0;
+}
+.add-btn {
+  background-color: yellow;
+}

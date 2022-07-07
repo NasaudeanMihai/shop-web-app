@@ -1,10 +1,10 @@
-import { mockData } from './mockData';
+import { mockDataImage } from '../../mockData/image';
 import { MockDataProps } from './NewsLetterProps';
 import { useState } from 'react';
 import './newsLetter.css';
 
 const NewsLetter = () => {
-  const [image, setImage] = useState<string>(mockData[0].img);
+  const [image, setImage] = useState<string>(mockDataImage[0].img);
   const [visible, setVisible] = useState<boolean>(true);
 
   const handleSliderButton = (item: MockDataProps) => {
@@ -19,7 +19,7 @@ const NewsLetter = () => {
       <img src={image} className={`img-thumbnail img-background ${visible ? 'fadeIn' : 'fadeOut'}`} alt="..." />
       <div className="wrapper-buttons">
         <div className="row ">
-          {mockData.map((item: MockDataProps) => {
+          {mockDataImage.map((item: MockDataProps) => {
             return (
               <div className="col">
                 <button onClick={() => handleSliderButton(item)} className="btn btn-dark btn-item">

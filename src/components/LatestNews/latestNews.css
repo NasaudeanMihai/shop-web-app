@@ -1,0 +1,27 @@
+.wrapper-container-latest {
+  background-color: transparent;
+}
+.wrapper-nd-img {
+  margin-bottom: 1rem;
+}
+
+.img-fluid-st {
+  max-width: 380px;
+  max-height: 500px;
+  height: 100%;
+  width: 100%;
+}
+
+.img-fluid-nd {
+  max-width: auto;
+  max-height: 300px;
+  height: 100%;
+  width: 100%;
+}
+
+.img-fluid-rd {
+  max-width: 280px;
+  max-height: 300px;
+  height: 100%;
+  width: 100%;
+}

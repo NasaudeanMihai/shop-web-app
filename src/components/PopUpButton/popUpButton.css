@@ -10,6 +10,10 @@
 .title-button {
   background-color: 'transparent';
 }
+.title-button-text {
+  font-size: medium;
+  font-weight: bold;
+}
 
 .wrapper-options {
   z-index: 2;

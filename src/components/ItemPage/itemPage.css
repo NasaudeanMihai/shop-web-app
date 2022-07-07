@@ -1,4 +1,41 @@
+.wrapper-container {
+  height: 100%;
+  margin-top: 60px;
+}
+
 .add-cart-button-text {
   text-align: center;
   margin: 0px;
+}
+
+.wrapper-h1-title {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgb(212, 212, 212);
+}
+
+.img {
+  width: 380px;
+  height: 380px;
+}
+
+.wrapper-small-container {
+  margin-top: 50px;
+}
+
+.wrapper-size {
+  margin-right: 40px;
+}
+
+.size-button {
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 2px solid rgb(169, 169, 169);
+  border-radius: 5px;
+}
+
+.wrapper-add-button {
+  margin-top: 40px;
 }

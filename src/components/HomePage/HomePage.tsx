@@ -14,6 +14,8 @@ import { image } from '../../assets/image/category';
 import './homePage.css';
 import { PriceFilterProps } from './FilterProps';
 
+import PopUpButton from '../../components/PopUpButton/PopUpButton';
+
 const HomePage: FC = (): ReactElement => {
   const [category, setCategory] = useState<string | null>(null);
   const [dataUser, setDataUser] = useState<FetchedDataProps[]>([]);
@@ -124,25 +126,47 @@ const HomePage: FC = (): ReactElement => {
 
   return (
     <div className="wrapper-home-page container">
-      <div className="row" style={{ backgroundColor: 'transparent' }}>
-        <Filter
-          selectedBrandFilter={selectedBrandFilter}
-          setSelectedBrandFilter={setSelectedBrandFilter}
-          selectedPriceFilter={selectedPriceFilter}
-          setSelectedPriceFilter={setSelectedPriceFilter}
-        />
-        <div className="wrapper-home-category col align-items-center">
-          <div className="row align-items-center">
-            <h2>Select Category</h2>
-            <CategoryButton handleCategoryButton={handleShirtButton} image={image.shirt} altImage={'Shirt'} />
-            <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
-          </div>
-          {categoryAndNrOfProducts()}
-          {checkIsLoading()}
+      <div className="row" style={{ marginTop: '5rem' }}>
+        <div className="col align-items-start">
+          <h2 className="fs-1 fw-bold">VW Beetle</h2>
         </div>
+        <div className="col align-items-end">
+          <div className="row">
+            <PopUpButton title={'TOPS'} options={['T-Shirts', 'Shirts', 'Blouses']} />
+            <PopUpButton title={'BOTTOMS'} options={['T-Shirts', 'Shirts', 'Blouses']} />
+          </div>
+        </div>
+      </div>
+      <div className="row" style={{ backgroundColor: 'transparent' }}>
+        <p>Slider</p>
+      </div>
+      <div className="row" style={{ backgroundColor: 'transparent' }}>
+        <p>dasda</p>
       </div>
     </div>
   );
+
+  // return (
+  //   <div className="wrapper-home-page container">
+  //     <div className="row" style={{ backgroundColor: 'transparent' }}>
+  //       <Filter
+  //         selectedBrandFilter={selectedBrandFilter}
+  //         setSelectedBrandFilter={setSelectedBrandFilter}
+  //         selectedPriceFilter={selectedPriceFilter}
+  //         setSelectedPriceFilter={setSelectedPriceFilter}
+  //       />
+  //       <div className="wrapper-home-category col align-items-center">
+  //         <div className="row align-items-center">
+  //           <h2>Select Category</h2>
+  //           <CategoryButton handleCategoryButton={handleShirtButton} image={image.shirt} altImage={'Shirt'} />
+  //           <CategoryButton handleCategoryButton={handlePantsButton} image={image.pants} altImage={'Pants'} />
+  //         </div>
+  //         {categoryAndNrOfProducts()}
+  //         {checkIsLoading()}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default HomePage;

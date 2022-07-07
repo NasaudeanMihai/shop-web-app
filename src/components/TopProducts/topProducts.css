@@ -24,6 +24,7 @@
 .add-cart-text {
   color: black;
   font-size: small;
+  align-self: center;
   margin: 0;
 }
 .add-btn {

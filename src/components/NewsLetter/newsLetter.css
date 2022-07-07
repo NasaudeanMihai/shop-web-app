@@ -1,0 +1,39 @@
+.img-background {
+  max-height: 400px;
+  max-width: 1200px;
+  min-width: 200px;
+  min-height: 200px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper-buttons {
+  position: absolute;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  bottom: 0;
+}
+
+.wrapper-img-container {
+  position: relative;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+}
+.fadeIn {
+  opacity: 1;
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+}
+
+.btn-item {
+  border-color: transparent;
+  opacity: 0.7;
+}
+
+.btn:focus {
+  box-shadow: none;
+}

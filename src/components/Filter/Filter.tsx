@@ -16,7 +16,7 @@ const Filter: FC<FilterProps> = ({
   const handleRadioButtonOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory({ name: event.target.name, selected: true });
   };
-  const handleNikeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBrandCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       setSelectedBrandFilter([...selectedBrandFilter, event.target.name]);
     } else {
@@ -55,7 +55,7 @@ const Filter: FC<FilterProps> = ({
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
         <div className="col col-scroll">
           {mockBrand.map(item => (
-            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
+            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handleBrandCheckBox(event)} />
           ))}
         </div>
       </div>

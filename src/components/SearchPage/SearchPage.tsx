@@ -6,13 +6,18 @@ import Loading from '../Loader/Loading';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { CategoryProps, PriceFilterProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
+import { useLocation } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
+  const { state } = useLocation();
+  const { data, id }: any = state;
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [category, setCategory] = useState<CategoryProps>({ name: '', selected: false });
-  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
+  const [category, setCategory] = useState<CategoryProps>(
+    data.category ? data.category : { name: '', selected: false },
+  );
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(data.brand ? [data.brand] : []);
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
 
   const checkIsLoading = () => {
@@ -31,6 +36,7 @@ const SearchPage: FC = (): ReactElement => {
       );
     }
   };
+
   const getFilteredData = useCallback(() => {
     if (selectedBrandFilter.length !== 0 || selectedPriceFilter.length !== 0) {
       getFilterBrandData(
@@ -60,16 +66,17 @@ const SearchPage: FC = (): ReactElement => {
     };
 
     getDataFromFirestore();
-  }, [category]);
+  }, [category, data.category.name, data.category.selected]);
+
   return (
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter
           setCategory={setCategory}
           category={category}
-          selectedBrandFilter={selectedBrandFilter}
+          selectedBrandFilter={data.brand ? data.brand : selectedBrandFilter}
           setSelectedBrandFilter={setSelectedBrandFilter}
-          selectedPriceFilter={selectedPriceFilter}
+          selectedPriceFilter={data.price ? data.price : selectedPriceFilter}
           setSelectedPriceFilter={setSelectedPriceFilter}
         />
         <div className="wrapper-home-category col align-items-center">{checkIsLoading()}</div>

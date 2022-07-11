@@ -43,8 +43,6 @@ const SearchPage: FC = (): ReactElement => {
 
   const getFilteredData = useCallback(() => {
     if (selectedBrandFilter.length !== 0 || selectedPriceFilter.length !== 0) {
-      // if (selectedFilter) {
-
       getFilterBrandData(
         dataList,
         setDataListFiltered,
@@ -53,17 +51,6 @@ const SearchPage: FC = (): ReactElement => {
         selectedBrandFilter,
         selectedPriceFilter,
       );
-
-      // } else {
-      //   getFilterBrandData(
-      //     dataList,
-      //     setDataListFiltered,
-      //     setIsLoading,
-      //     category,
-      //     selectedBrandFilter,
-      //     selectedPriceFilter,
-      //   );
-      // }
     } else {
       setDataListFiltered(dataList);
     }

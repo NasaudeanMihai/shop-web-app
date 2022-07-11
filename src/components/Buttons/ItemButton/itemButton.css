@@ -3,3 +3,9 @@
   margin-right: 1rem;
   margin-left: 1rem;
 }
+.btn-itm {
+  border: 1px solid gainsboro;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}

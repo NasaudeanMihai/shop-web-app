@@ -6,14 +6,23 @@ import Loading from '../Loader/Loading';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { CategoryProps, PriceFilterProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
+import { useLocation } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
+  const { state } = useLocation();
+  const { selectedFilter }: any = state;
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [category, setCategory] = useState<CategoryProps>({ name: '', selected: false });
-  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
-  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
+  const [category, setCategory] = useState<CategoryProps>(
+    selectedFilter.category ? selectedFilter.category : { name: '', selected: false },
+  );
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(
+    selectedFilter.brand ? [selectedFilter.brand] : [],
+  );
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>(
+    selectedFilter.price.value ? [selectedFilter.price] : [],
+  );
 
   const checkIsLoading = () => {
     if (isLoading) {
@@ -31,6 +40,7 @@ const SearchPage: FC = (): ReactElement => {
       );
     }
   };
+
   const getFilteredData = useCallback(() => {
     if (selectedBrandFilter.length !== 0 || selectedPriceFilter.length !== 0) {
       getFilterBrandData(
@@ -61,10 +71,12 @@ const SearchPage: FC = (): ReactElement => {
 
     getDataFromFirestore();
   }, [category]);
+
   return (
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter
+          selectedFilter={selectedFilter}
           setCategory={setCategory}
           category={category}
           selectedBrandFilter={selectedBrandFilter}

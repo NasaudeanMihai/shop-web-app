@@ -10,13 +10,30 @@ const Filter: FC<FilterProps> = ({
   selectedBrandFilter,
   selectedPriceFilter,
   setSelectedPriceFilter,
+  selectedFilter,
   setCategory,
   category,
 }: FilterProps): ReactElement => {
+  const checkSelected = (
+    item: {
+      name: string;
+      value: string;
+    },
+    selectedItemFilter: Array<any>,
+  ) => {
+    for (let i = 0; i < selectedItemFilter.length; i++) {
+      if (selectedItemFilter[i] === item.name || selectedItemFilter[i].name === item.name) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
   const handleRadioButtonOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory({ name: event.target.name, selected: true });
   };
-  const handleNikeCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBrandCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       setSelectedBrandFilter([...selectedBrandFilter, event.target.name]);
     } else {
@@ -51,11 +68,16 @@ const Filter: FC<FilterProps> = ({
           ))}
         </div>
       </div>
+
       <div className="row wrapper-filter">
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Brand:</p>
         <div className="col col-scroll">
           {mockBrand.map(item => (
-            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handleNikeCheckBox(event)} />
+            <FilterCheckBox
+              checked={checkSelected(item, selectedBrandFilter)}
+              item={item}
+              handleCheckBoxOnChange={event => handleBrandCheckBox(event)}
+            />
           ))}
         </div>
       </div>
@@ -63,7 +85,11 @@ const Filter: FC<FilterProps> = ({
         <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Price:</p>
         <div className="col col-scroll">
           {mockPrice.map(item => (
-            <FilterCheckBox item={item} handleCheckBoxOnChange={event => handlePriceCheckBox(event)} />
+            <FilterCheckBox
+              checked={selectedFilter.price.value === item.value}
+              item={item}
+              handleCheckBoxOnChange={event => handlePriceCheckBox(event)}
+            />
           ))}
         </div>
       </div>

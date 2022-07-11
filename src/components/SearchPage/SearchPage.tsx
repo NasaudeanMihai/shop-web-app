@@ -10,15 +10,19 @@ import { useLocation } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
   const { state } = useLocation();
-  const { data, id }: any = state;
+  const { selectedFilter }: any = state;
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [category, setCategory] = useState<CategoryProps>(
-    data.category ? data.category : { name: '', selected: false },
+    selectedFilter.category ? selectedFilter.category : { name: '', selected: false },
   );
-  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(data.brand ? [data.brand] : []);
-  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>([]);
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(
+    selectedFilter.brand ? [selectedFilter.brand] : [],
+  );
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>(
+    selectedFilter.price.value ? [selectedFilter.price] : [],
+  );
 
   const checkIsLoading = () => {
     if (isLoading) {
@@ -39,6 +43,8 @@ const SearchPage: FC = (): ReactElement => {
 
   const getFilteredData = useCallback(() => {
     if (selectedBrandFilter.length !== 0 || selectedPriceFilter.length !== 0) {
+      // if (selectedFilter) {
+
       getFilterBrandData(
         dataList,
         setDataListFiltered,
@@ -47,6 +53,17 @@ const SearchPage: FC = (): ReactElement => {
         selectedBrandFilter,
         selectedPriceFilter,
       );
+
+      // } else {
+      //   getFilterBrandData(
+      //     dataList,
+      //     setDataListFiltered,
+      //     setIsLoading,
+      //     category,
+      //     selectedBrandFilter,
+      //     selectedPriceFilter,
+      //   );
+      // }
     } else {
       setDataListFiltered(dataList);
     }
@@ -66,17 +83,18 @@ const SearchPage: FC = (): ReactElement => {
     };
 
     getDataFromFirestore();
-  }, [category, data.category.name, data.category.selected]);
+  }, [category]);
 
   return (
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter
+          selectedFilter={selectedFilter}
           setCategory={setCategory}
           category={category}
-          selectedBrandFilter={data.brand ? data.brand : selectedBrandFilter}
+          selectedBrandFilter={selectedBrandFilter}
           setSelectedBrandFilter={setSelectedBrandFilter}
-          selectedPriceFilter={data.price ? data.price : selectedPriceFilter}
+          selectedPriceFilter={selectedPriceFilter}
           setSelectedPriceFilter={setSelectedPriceFilter}
         />
         <div className="wrapper-home-category col align-items-center">{checkIsLoading()}</div>

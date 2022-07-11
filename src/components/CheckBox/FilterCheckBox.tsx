@@ -4,11 +4,13 @@ import './filterCheckBox.css';
 
 const FilterCheckBox: FC<FilterCheckBoxProps> = ({
   handleCheckBoxOnChange,
+  checked = false,
   item,
 }: FilterCheckBoxProps): ReactElement => {
   return (
     <div className="input-group">
       <input
+        checked={checked}
         name={`${item.value}`}
         className="form-check-input input-style "
         type="checkbox"

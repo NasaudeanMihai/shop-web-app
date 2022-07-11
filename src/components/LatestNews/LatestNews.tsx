@@ -6,38 +6,43 @@ const LatestNews = () => {
   const navigate = useNavigate();
 
   const handleStButton = () =>
-    navigate('/search', { state: { data: { category: { name: 'blouses', selected: true } }, id: 'blouses' } });
+    navigate('/search', {
+      state: {
+        selectedFilter: {
+          category: { name: 'blouses', selected: true },
+          brand: '',
+          price: { name: '', value: null },
+        },
+      },
+    });
   const handleNdButton = () =>
     navigate('/search', {
       state: {
-        data: {
+        selectedFilter: {
           category: { name: 'jeans', selected: true },
           brand: 'nike',
           price: { name: '10', value: 10 },
         },
-        id: 'nike',
       },
     });
   const handleRdAdidasButton = () =>
     navigate('/search', {
       state: {
-        data: {
+        selectedFilter: {
           category: { name: 't-shirt', selected: true },
           brand: 'adidas',
           price: { name: '10', value: 10 },
         },
-        id: 'adidas',
       },
     });
   const handleRdMustangButton = () =>
     navigate('/search', {
       state: {
-        data: {
+        selectedFilter: {
           category: { name: 'pants', selected: true },
           brand: 'mustang',
           price: { name: '10', value: 10 },
         },
-        id: 'mustang',
       },
     });
 

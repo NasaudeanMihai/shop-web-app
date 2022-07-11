@@ -1,4 +1,5 @@
 export interface FilterProps {
+  selectedFilter: SelectedFilterProps;
   category: CategoryProps;
   selectedBrandFilter: string[];
   selectedPriceFilter: Array<PriceFilterProps>;
@@ -15,4 +16,10 @@ export interface PriceFilterProps {
 export interface CategoryProps {
   name: string;
   selected: boolean;
+}
+
+export interface SelectedFilterProps {
+  category: { name: string; selected: boolean };
+  brand: string;
+  price: { name: string; value: number };
 }

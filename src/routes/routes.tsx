@@ -6,6 +6,8 @@ import CartPage from '../components/CartPage/CartPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import LoginPage from '../components/LoginPage/LoginPage';
 import SignUpPage from '../components/SignUpPage/SignUpPage';
+import SearchPage from '../components/SearchPage/SearchPage';
+
 const Routes = () => {
   return (
     <ReactRoutes>
@@ -15,6 +17,7 @@ const Routes = () => {
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/item" element={<ItemPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/search" element={<SearchPage />} />
     </ReactRoutes>
   );
 };

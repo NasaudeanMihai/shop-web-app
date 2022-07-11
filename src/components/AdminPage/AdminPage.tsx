@@ -38,13 +38,13 @@ const AdminPage: FC = (): ReactElement => {
   const handleAddButton = async () => {
     try {
       if (brand !== '' && price !== '')
-        await addDoc(collection(db, 'web-shop', 'clothes', category), {
+        await addDoc(collection(db, 'web-shop', 'clothes', 'pants'), {
           brand,
           image,
           price,
           size,
         });
-      setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
+      // setAddData({ category: '', brand: '', image: '', price: '', size: ['S', 'M', 'L', 'XL'] });
     } catch (error) {
       console.log(error);
       return;

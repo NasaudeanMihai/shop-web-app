@@ -1,0 +1,14 @@
+.col-scroll {
+  overflow: scroll;
+  max-height: 150px;
+  align-items: flex-start;
+  padding-left: 30px;
+}
+.wrapper-filter {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border: 2px solid #eee;
+  justify-content: flex-start;
+  background-color: white;
+  border-radius: 10px;
+}

@@ -4,25 +4,16 @@ import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestor
 import { DataProps } from '../../interface/dataItemProps';
 import Loading from '../Loader/Loading';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
-import { CategoryProps, PriceFilterProps } from '../Filter/FilterProps';
+import { CategoryProps, FilterItemBoxProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
-import { useLocation } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
-  const { state } = useLocation();
-  const { selectedFilter }: any = state;
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [category, setCategory] = useState<CategoryProps>(
-    selectedFilter.category ? selectedFilter.category : { name: '', selected: false },
-  );
-  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(
-    selectedFilter.brand ? [selectedFilter.brand] : [],
-  );
-  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<PriceFilterProps>>(
-    selectedFilter.price.value ? [selectedFilter.price] : [],
-  );
+  const [category, setCategory] = useState<CategoryProps>({ name: '', selected: false });
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<FilterItemBoxProps>>([]);
 
   const checkIsLoading = () => {
     if (isLoading) {
@@ -76,7 +67,6 @@ const SearchPage: FC = (): ReactElement => {
     <div className="wrapper-home-page container">
       <div className="row" style={{ backgroundColor: 'transparent' }}>
         <Filter
-          selectedFilter={selectedFilter}
           setCategory={setCategory}
           category={category}
           selectedBrandFilter={selectedBrandFilter}

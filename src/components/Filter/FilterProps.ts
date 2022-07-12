@@ -1,16 +1,15 @@
 export interface FilterProps {
-  selectedFilter: SelectedFilterProps;
   category: CategoryProps;
   selectedBrandFilter: string[];
-  selectedPriceFilter: Array<PriceFilterProps>;
-  setSelectedPriceFilter: (selectedPriceFilter: Array<PriceFilterProps>) => void;
+  selectedPriceFilter: Array<FilterItemBoxProps>;
+  setSelectedPriceFilter: (selectedPriceFilter: Array<FilterItemBoxProps>) => void;
   setSelectedBrandFilter: (selectedBrandFilter: string[]) => void;
   setCategory: (category: CategoryProps) => void;
 }
 
-export interface PriceFilterProps {
+export interface FilterItemBoxProps {
   name: string;
-  value: number;
+  value: number | string;
 }
 
 export interface CategoryProps {
@@ -22,4 +21,10 @@ export interface SelectedFilterProps {
   category: { name: string; selected: boolean };
   brand: string;
   price: { name: string; value: number };
+}
+
+export interface FilterBoxProps {
+  title: string;
+  filterData: Array<FilterItemBoxProps>;
+  handleCheckBox: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

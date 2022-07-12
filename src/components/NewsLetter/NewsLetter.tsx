@@ -21,7 +21,7 @@ const NewsLetter = () => {
         <div className="row ">
           {mockDataImage.map((item: MockDataProps) => {
             return (
-              <div className="col">
+              <div className="col" key={`news-letter-${item.value}`}>
                 <button onClick={() => handleSliderButton(item)} className="btn btn-dark btn-item">
                   {item.value}
                 </button>

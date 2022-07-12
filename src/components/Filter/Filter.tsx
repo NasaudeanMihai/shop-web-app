@@ -40,18 +40,12 @@ const Filter: FC<FilterProps> = ({
 
   return (
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
-      <div className="row wrapper-filter">
-        <p style={{ textAlign: 'left', fontSize: 24, fontWeight: 'bold' }}>Category:</p>
-        <div className="col col-scroll">
-          {mockCategory.map(item => (
-            <RadioButton
-              item={item}
-              checked={category.name === item.name}
-              handleRadioButtonOnChange={event => handleRadioButtonOnChange(event)}
-            />
-          ))}
-        </div>
-      </div>
+      <FilterBox
+        radioButton
+        filterData={mockCategory}
+        handleCheckBox={event => handleRadioButtonOnChange(event)}
+        title={'Category'}
+      />
       <FilterBox filterData={mockBrand} handleCheckBox={event => handleBrandCheckBox(event)} title={'Brand'} />
       <FilterBox filterData={mockPrice} handleCheckBox={event => handlePriceCheckBox(event)} title={'Price'} />
     </div>

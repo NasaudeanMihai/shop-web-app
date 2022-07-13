@@ -1,5 +1,6 @@
 import { mockDataLatestNews } from './mockData';
 import { useNavigate } from 'react-router-dom';
+import LatestNewsImg from './LatestNewsImg';
 import './latestNews.css';
 
 const LatestNews = () => {
@@ -49,32 +50,39 @@ const LatestNews = () => {
   return (
     <div className="row wrapper-container-latest">
       <p className="fs-4 fw-bold">LATEST NEWS</p>
-      <div className="col-5 wrapper-st">
-        <button className="btn add-btn" onClick={handleStButton}>
-          <img src={mockDataLatestNews[0].img} className={`img-fluid-st`} alt="..." />
-          <p className="text-st">Click to find more</p>
-        </button>
-      </div>
+      <LatestNewsImg
+        title="Click to find more"
+        imgClassName={'img-fluid-st'}
+        image={mockDataLatestNews[0].img}
+        handleImageButton={handleStButton}
+        wrapperButtonImage={'col-5 wrapper-st'}
+      />
+
       <div className="col-7">
-        <div className="row wrapper-nd-img">
-          <button className="btn add-btn" onClick={handleNdButton}>
-            <img src={mockDataLatestNews[1].img} className={`img-fluid-nd`} alt="..." />
-            <p className="text-st">Nike under 10$</p>
-          </button>
-        </div>
+        <LatestNewsImg
+          title="Nike under 10$"
+          imgClassName={'img-fluid-nd'}
+          image={mockDataLatestNews[1].img}
+          handleImageButton={handleNdButton}
+          wrapperButtonImage={'row wrapper-nd-img'}
+        />
+
         <div className="row">
-          <div className="col-6 wrapper-rd-img">
-            <button className="btn add-btn" onClick={handleRdAdidasButton}>
-              <img src={mockDataLatestNews[2].img} className={`img-fluid-rd`} alt="..." />
-              <p className="text-st">Adidas under 10$</p>
-            </button>
-          </div>
-          <div className="col-6 wrapper-rd-img">
-            <button className="btn add-btn" onClick={handleRdMustangButton}>
-              <img src={mockDataLatestNews[3].img} className={`img-fluid-rd`} alt="..." />
-              <p className="text-st">Mustang under 10$</p>
-            </button>
-          </div>
+          <LatestNewsImg
+            title="Adidas under 10$"
+            imgClassName={'img-fluid-rd'}
+            image={mockDataLatestNews[2].img}
+            handleImageButton={handleRdAdidasButton}
+            wrapperButtonImage={'col-6 wrapper-rd-img'}
+          />
+
+          <LatestNewsImg
+            title="Mustang under 10$"
+            imgClassName={'img-fluid-rd'}
+            image={mockDataLatestNews[3].img}
+            handleImageButton={handleRdMustangButton}
+            wrapperButtonImage={'col-6 wrapper-rd-img'}
+          />
         </div>
       </div>
     </div>

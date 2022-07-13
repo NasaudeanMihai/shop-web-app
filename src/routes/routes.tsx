@@ -18,6 +18,9 @@ const Routes = () => {
       <Route path="/item" element={<ItemPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/search/:category" element={<SearchPage />} />
+      <Route path="/search/:category/:brand" element={<SearchPage />} />
+      <Route path="/search/:category/:brand/:price" element={<SearchPage />} />
     </ReactRoutes>
   );
 };

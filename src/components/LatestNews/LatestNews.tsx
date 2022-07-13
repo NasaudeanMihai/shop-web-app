@@ -7,44 +7,31 @@ const LatestNews = () => {
   const navigate = useNavigate();
 
   const handleStButton = () =>
-    navigate('/search', {
-      state: {
-        selectedFilter: {
-          category: { name: 'blouses', selected: true },
-          brand: '',
-          price: { name: '', value: null },
-        },
-      },
+    navigate({
+      pathname: '/search/blouses',
     });
   const handleNdButton = () =>
-    navigate('/search', {
-      state: {
-        selectedFilter: {
-          category: { name: 'jeans', selected: true },
-          brand: 'nike',
-          price: { name: '10', value: 10 },
+    navigate(
+      {
+        pathname: '/search/jeans/nike/10',
+      },
+      {
+        state: {
+          selectedFilter: {
+            category: { name: 'jeans', selected: true },
+            brand: 'nike',
+            price: { name: '10', value: 10 },
+          },
         },
       },
-    });
+    );
   const handleRdAdidasButton = () =>
-    navigate('/search', {
-      state: {
-        selectedFilter: {
-          category: { name: 't-shirt', selected: true },
-          brand: 'adidas',
-          price: { name: '10', value: 10 },
-        },
-      },
+    navigate({
+      pathname: '/search/t-shirt/adidas/10',
     });
   const handleRdMustangButton = () =>
-    navigate('/search', {
-      state: {
-        selectedFilter: {
-          category: { name: 'pants', selected: true },
-          brand: 'mustang',
-          price: { name: '10', value: 10 },
-        },
-      },
+    navigate({
+      pathname: '/search/pants/mustang/10',
     });
 
   return (

@@ -25,7 +25,10 @@ export interface SelectedFilterProps {
 
 export interface FilterBoxProps {
   title: string;
+  brandFilter?: string[];
+  priceFilter?: FilterItemBoxProps[];
   radioButton?: boolean;
   filterData: Array<FilterItemBoxProps>;
+  category?: { name: string; selected: boolean };
   handleCheckBox: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

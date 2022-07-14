@@ -1,7 +1,6 @@
 import { FC, ReactElement } from 'react';
 
 import { FilterProps, FilterItemBoxProps } from './FilterProps';
-import RadioButton from '../RadioButton/RadioButton';
 import FilterBox from './FilterBox';
 import { mockBrand, mockCategory, mockPrice } from '../HomePage/mockData';
 import './filter.css';
@@ -33,7 +32,9 @@ const Filter: FC<FilterProps> = ({
         { name: event.target.name, value: event.target.name === '10' ? 10 : event.target.name === '100' ? 100 : 0 },
       ]);
     } else {
-      const uncheckBox = selectedPriceFilter.filter(({ name }: FilterItemBoxProps) => name !== event.target.name);
+      const uncheckBox = selectedPriceFilter.filter(({ name }: FilterItemBoxProps) => {
+        return name !== event.target.name;
+      });
       setSelectedPriceFilter(uncheckBox);
     }
   };
@@ -42,12 +43,23 @@ const Filter: FC<FilterProps> = ({
     <div className="col-3" style={{ backgroundColor: 'transparent' }}>
       <FilterBox
         radioButton
+        category={category}
         filterData={mockCategory}
         handleCheckBox={event => handleRadioButtonOnChange(event)}
         title={'Category'}
       />
-      <FilterBox filterData={mockBrand} handleCheckBox={event => handleBrandCheckBox(event)} title={'Brand'} />
-      <FilterBox filterData={mockPrice} handleCheckBox={event => handlePriceCheckBox(event)} title={'Price'} />
+      <FilterBox
+        brandFilter={selectedBrandFilter}
+        filterData={mockBrand}
+        handleCheckBox={event => handleBrandCheckBox(event)}
+        title={'Brand'}
+      />
+      <FilterBox
+        priceFilter={selectedPriceFilter}
+        filterData={mockPrice}
+        handleCheckBox={event => handlePriceCheckBox(event)}
+        title={'Price'}
+      />
     </div>
   );
 };

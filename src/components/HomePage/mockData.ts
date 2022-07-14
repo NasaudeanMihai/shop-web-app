@@ -1,6 +1,6 @@
 export const mockPrice = [
   { name: '<= 10$', value: 10 },
-  { name: '10$ - 100$', value: '10and100' },
+  { name: '10$ - 100$', value: 0 },
   { name: '>= 100$', value: 100 },
 ];
 

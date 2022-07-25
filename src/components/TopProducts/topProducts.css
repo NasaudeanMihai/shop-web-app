@@ -30,3 +30,16 @@
 .add-btn {
   background-color: yellow;
 }
+
+.wrapper-top-product-left {
+  padding: 0;
+}
+
+.wrapper-top-product-middle {
+  padding-left: 2;
+  padding-right: 2;
+}
+.wrapper-top-product-right {
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -16,7 +16,7 @@ const NewsLetter = () => {
   };
   return (
     <div className="container wrapper-img-container">
-      <img src={image} className={`img-thumbnail img-background ${visible ? 'fadeIn' : 'fadeOut'}`} alt="..." />
+      <img src={image} className={`img-fluid img-background ${visible ? 'fadeIn' : 'fadeOut'}`} alt="..." />
       <div className="wrapper-buttons">
         <div className="row ">
           {mockDataImage.map((item: MockDataProps) => {

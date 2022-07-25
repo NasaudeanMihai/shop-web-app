@@ -28,9 +28,21 @@ const TopProducts: FC = (): ReactElement => {
         </div>
         <div className="container wrapper-top-seller">
           <div className="row">
-            <TopProductsItem image={mockDataImage[3].img} handleAddToCartItem={() => {}} />
-            <TopProductsItem image={mockDataImage[2].img} handleAddToCartItem={() => {}} />
-            <TopProductsItem image={mockDataImage[1].img} handleAddToCartItem={() => {}} />
+            <TopProductsItem
+              aditionalClass="wrapper-top-product-left"
+              image={mockDataImage[3].img}
+              handleAddToCartItem={() => {}}
+            />
+            <TopProductsItem
+              aditionalClass="wrapper-top-product-middle"
+              image={mockDataImage[2].img}
+              handleAddToCartItem={() => {}}
+            />
+            <TopProductsItem
+              aditionalClass="wrapper-top-product-right"
+              image={mockDataImage[1].img}
+              handleAddToCartItem={() => {}}
+            />
           </div>
         </div>
       </div>

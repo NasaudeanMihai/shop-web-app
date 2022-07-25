@@ -1,15 +1,17 @@
 import { ReactElement, FC, useState, useEffect, useCallback } from 'react';
-import Filter from '../Filter/Filter';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
-import { DataProps } from '../../interface/dataItemProps';
-import Loading from '../Loader/Loading';
-import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { CategoryProps, FilterItemBoxProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
-import { useParams } from 'react-router-dom';
+import { DataProps } from '../../interface/dataItemProps';
+import ItemButton from '../Buttons/ItemButton/ItemButton';
+import Loading from '../Loader/Loading';
+import Filter from '../Filter/Filter';
 
 const SearchPage: FC = (): ReactElement => {
   const { brand, category: categoryParams, price } = useParams();
+  const navigate = useNavigate();
 
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
@@ -34,7 +36,16 @@ const SearchPage: FC = (): ReactElement => {
               return (
                 <ItemButton
                   key={`item-button-${data.brand}-${id}`}
-                  handleItemButton={() => null}
+                  handleItemButton={() =>
+                    navigate(
+                      {
+                        pathname: '/item',
+                      },
+                      {
+                        state: { data },
+                      },
+                    )
+                  }
                   item={data}
                   altImage={data.brand}
                 />

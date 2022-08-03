@@ -4,10 +4,11 @@ import { IoCartOutline } from 'react-icons/io5';
 
 const TopProductsItem: FC<TopProductsItemProps> = ({
   image,
+  aditionalClass,
   handleAddToCartItem,
 }: TopProductsItemProps): ReactElement => {
   return (
-    <div className="col">
+    <div className={`col ${aditionalClass}`}>
       <div>
         <img src={image} className={`img-background `} alt="..." />
         <div className="wrapper-button-cart">

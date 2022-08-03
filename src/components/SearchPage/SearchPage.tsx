@@ -23,7 +23,14 @@ const SearchPage: FC = (): ReactElement => {
         <div className="row align-items-start">
           {dataListFiltered.map(({ data }: DataProps) => {
             if (data) {
-              return <ItemButton handleItemButton={() => null} item={data} altImage={data.brand} />;
+              return (
+                <ItemButton
+                  key={`item-button-${data.brand}`}
+                  handleItemButton={() => null}
+                  item={data}
+                  altImage={data.brand}
+                />
+              );
             }
             return null;
           })}

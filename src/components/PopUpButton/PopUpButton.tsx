@@ -19,7 +19,9 @@ const PopUpButton = ({ title, options }: PopUpButtonProps) => {
           onMouseLeave={() => setIsOptionVisible(false)}>
           <div className="col">
             {options.map(item => (
-              <button className="btn item-button">{item}</button>
+              <button key={`pop-up-${item}`} className="btn item-button">
+                {item}
+              </button>
             ))}
           </div>
         </div>

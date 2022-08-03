@@ -5,8 +5,13 @@
   max-height: 300px;
   position: relative;
   overflow: hidden;
+  margin: 0;
   height: 100%;
   width: 100%;
+  padding: 0;
+}
+.wrapper-container-img {
+  box-shadow: 13px 13px 2px #a9a9a9;
   padding: 0;
 }
 
@@ -52,6 +57,15 @@
   padding-bottom: 2%;
   font-size: larger;
 }
+
+.text-rd {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  padding-left: 10%;
+  padding-bottom: 15%;
+  font-size: larger;
+}
 .wrapper-rd-img {
   position: relative;
   overflow: hidden;
@@ -60,7 +74,7 @@
 }
 
 .wrapper-container-nd {
-  padding-right: 0;
+  padding: 0;
   max-height: 500px;
   overflow: hidden;
   width: 65%;
@@ -70,6 +84,7 @@
   max-height: 250px;
   position: relative;
   height: 100%;
+  margin: 0;
   width: 100%;
   padding: 0;
 }

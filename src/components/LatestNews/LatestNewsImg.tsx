@@ -5,6 +5,7 @@ const LatestNewsImg: FC<LatestNewsImgProps> = ({
   image,
   title,
   imgClassName,
+  textClassName,
   handleImageButton,
   wrapperButtonImage,
 }: LatestNewsImgProps): ReactElement => {
@@ -12,7 +13,7 @@ const LatestNewsImg: FC<LatestNewsImgProps> = ({
     <div className={wrapperButtonImage}>
       <button className="btn add-btn" onClick={handleImageButton}>
         <img src={image} className={imgClassName} alt="..." />
-        <p className="text-st">{title}</p>
+        <p className={textClassName}>{title}</p>
       </button>
     </div>
   );

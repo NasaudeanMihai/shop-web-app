@@ -26,39 +26,45 @@ const LatestNews = () => {
   return (
     <div className="row wrapper-container-latest">
       <p className="fs-4 fw-bold">LATEST NEWS</p>
-      <LatestNewsImg
-        title="Click to find more"
-        imgClassName={'img-fluid-st img-fluid'}
-        image={mockDataLatestNews[0].img}
-        handleImageButton={handleStButton}
-        wrapperButtonImage={'col-5 wrapper-st'}
-      />
 
-      <div className="col-7 wrapper-container-nd">
+      <div className="row wrapper-container-img">
         <LatestNewsImg
-          title="Nike under 10$"
-          imgClassName={'img-fluid-nd img-fluid'}
-          image={mockDataLatestNews[1].img}
-          handleImageButton={handleNdButton}
-          wrapperButtonImage={'row wrapper-nd-img'}
+          textClassName={'text-st'}
+          title="Click to find more"
+          imgClassName={'img-fluid-st img-fluid'}
+          image={mockDataLatestNews[0].img}
+          handleImageButton={handleStButton}
+          wrapperButtonImage={'col-5 wrapper-st'}
         />
-
-        <div className="row wrapper-bottom-lates-img">
+        <div className="col-7 wrapper-container-nd">
           <LatestNewsImg
-            title="Adidas under 10$"
-            imgClassName={'img-fluid-rd img-fluid'}
-            image={mockDataLatestNews[2].img}
-            handleImageButton={handleRdAdidasButton}
-            wrapperButtonImage={'col-6 wrapper-rd-img'}
+            textClassName={'text-st'}
+            title="Nike under 10$"
+            imgClassName={'img-fluid-nd img-fluid'}
+            image={mockDataLatestNews[1].img}
+            handleImageButton={handleNdButton}
+            wrapperButtonImage={'row wrapper-nd-img'}
           />
 
-          <LatestNewsImg
-            title="Mustang under 10$"
-            imgClassName={'img-fluid-rd img-fluid'}
-            image={mockDataLatestNews[3].img}
-            handleImageButton={handleRdMustangButton}
-            wrapperButtonImage={'col-6 wrapper-rd-img'}
-          />
+          <div className="row wrapper-bottom-lates-img">
+            <LatestNewsImg
+              textClassName={'text-rd'}
+              title="Adidas under 10$"
+              imgClassName={'img-fluid-rd img-fluid'}
+              image={mockDataLatestNews[2].img}
+              handleImageButton={handleRdAdidasButton}
+              wrapperButtonImage={'col-6 wrapper-rd-img'}
+            />
+
+            <LatestNewsImg
+              textClassName={'text-rd'}
+              title="Mustang under 10$"
+              imgClassName={'img-fluid-rd img-fluid'}
+              image={mockDataLatestNews[3].img}
+              handleImageButton={handleRdMustangButton}
+              wrapperButtonImage={'col-6 wrapper-rd-img'}
+            />
+          </div>
         </div>
       </div>
     </div>

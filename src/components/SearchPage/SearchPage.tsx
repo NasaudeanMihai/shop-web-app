@@ -6,8 +6,10 @@ import Loading from '../Loader/Loading';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { CategoryProps, FilterItemBoxProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
+// import { useParams } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
+  // const params = useParams();
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);

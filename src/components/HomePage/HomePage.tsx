@@ -17,8 +17,8 @@ const HomePage: FC = (): ReactElement => {
         </div>
         <div className="col align-items-end">
           <div className="row">
-            <PopUpButton title={'TOPS'} options={['T-Shirts', 'Shirts', 'Blouses']} />
-            <PopUpButton title={'BOTTOMS'} options={['T-Shirts', 'Shirts', 'Blouses']} />
+            <PopUpButton title={'TOPS'} options={['T-Shirt', 'Shirt', 'Blouses']} />
+            <PopUpButton title={'BOTTOMS'} options={['Jeans', 'Pants', 'Short-Pants']} />
           </div>
         </div>
       </div>

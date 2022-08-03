@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { PopUpButtonProps } from './popUpButtonProps';
 import './popUpButton.css';
+import { useNavigate } from 'react-router-dom';
 
 const PopUpButton = ({ title, options }: PopUpButtonProps) => {
+  const navigate = useNavigate();
   const [isOptionVisible, setIsOptionVisible] = useState<boolean>(false);
+
+  const handlePopUpClick = (item: string) =>
+    navigate({
+      pathname: `/search/${item.toLowerCase()}`,
+    });
+
   return (
     <div className="col align-middle">
       <button
@@ -19,7 +27,7 @@ const PopUpButton = ({ title, options }: PopUpButtonProps) => {
           onMouseLeave={() => setIsOptionVisible(false)}>
           <div className="col">
             {options.map(item => (
-              <button key={`pop-up-${item}`} className="btn item-button">
+              <button onClick={() => handlePopUpClick(item)} key={`pop-up-${item}`} className="btn item-button">
                 {item}
               </button>
             ))}

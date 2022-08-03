@@ -12,3 +12,9 @@
   background-color: white;
   border-radius: 10px;
 }
+
+.filter-title {
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+}

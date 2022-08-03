@@ -1,4 +1,4 @@
-import { CategoryProps, PriceFilterProps } from '../components/Filter/FilterProps';
+import { CategoryProps, FilterItemBoxProps } from '../components/Filter/FilterProps';
 import { DataProps } from '../interface/dataItemProps';
 import { FetchedDataProps } from '../interface/dataItemProps';
 
@@ -8,7 +8,7 @@ export const getFilterBrandData = async (
   setIsLoading: (value: boolean) => void,
   category: CategoryProps | null,
   selectedBrandFilter: string[],
-  selectedPriceFilter: Array<PriceFilterProps>,
+  selectedPriceFilter: Array<FilterItemBoxProps>,
 ) => {
   if (selectedBrandFilter.length !== 0) {
     let filteredItemByBrandList: Array<FetchedDataProps> = [];

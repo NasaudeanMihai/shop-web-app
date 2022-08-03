@@ -6,16 +6,22 @@ import Loading from '../Loader/Loading';
 import ItemButton from '../Buttons/ItemButton/ItemButton';
 import { CategoryProps, FilterItemBoxProps } from '../Filter/FilterProps';
 import { getFilterBrandData } from '../../utils/getFilterData';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const SearchPage: FC = (): ReactElement => {
-  // const params = useParams();
+  const { brand, category: categoryParams, price } = useParams();
+
   const [dataList, setDataList] = useState<DataProps[]>([]);
   const [dataListFiltered, setDataListFiltered] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [category, setCategory] = useState<CategoryProps>({ name: '', selected: false });
-  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>([]);
-  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<FilterItemBoxProps>>([]);
+  const [category, setCategory] = useState<CategoryProps>({
+    name: categoryParams ? categoryParams : '',
+    selected: categoryParams ? true : false,
+  });
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string[]>(brand ? [brand] : []);
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<Array<FilterItemBoxProps>>(
+    price ? [{ name: price, value: parseInt(price) }] : [],
+  );
 
   const checkIsLoading = () => {
     if (isLoading) {
@@ -23,11 +29,11 @@ const SearchPage: FC = (): ReactElement => {
     } else {
       return (
         <div className="row align-items-start">
-          {dataListFiltered.map(({ data }: DataProps) => {
+          {dataListFiltered.map(({ data }: DataProps, id: number) => {
             if (data) {
               return (
                 <ItemButton
-                  key={`item-button-${data.brand}`}
+                  key={`item-button-${data.brand}-${id}`}
                   handleItemButton={() => null}
                   item={data}
                   altImage={data.brand}

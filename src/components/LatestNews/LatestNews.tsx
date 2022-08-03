@@ -11,20 +11,9 @@ const LatestNews = () => {
       pathname: '/search/blouses',
     });
   const handleNdButton = () =>
-    navigate(
-      {
-        pathname: '/search/jeans/nike/10',
-      },
-      {
-        state: {
-          selectedFilter: {
-            category: { name: 'jeans', selected: true },
-            brand: 'nike',
-            price: { name: '10', value: 10 },
-          },
-        },
-      },
-    );
+    navigate({
+      pathname: '/search/jeans/adidas/100',
+    });
   const handleRdAdidasButton = () =>
     navigate({
       pathname: '/search/t-shirt/adidas/10',

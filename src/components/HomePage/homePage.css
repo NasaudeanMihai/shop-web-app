@@ -31,3 +31,9 @@
   width: 100%;
   height: 10rem;
 }
+
+.wrapper-article {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}

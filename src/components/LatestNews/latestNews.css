@@ -1,5 +1,6 @@
 .wrapper-container-latest {
   background-color: transparent;
+  justify-content: center;
 }
 .wrapper-nd-img {
   max-height: 300px;
@@ -13,6 +14,7 @@
 .wrapper-container-img {
   box-shadow: 13px 13px 2px #a9a9a9;
   padding: 0;
+  width: 96%;
 }
 
 .img-fluid-st {

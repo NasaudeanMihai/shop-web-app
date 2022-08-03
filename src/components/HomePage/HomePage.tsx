@@ -23,7 +23,7 @@ const HomePage: FC = (): ReactElement => {
         </div>
       </div>
       <NewsLetter />
-      <div className="row">
+      <div className="row wrapper-article">
         <div className="container">
           <TopProducts />
           <LatestNews />

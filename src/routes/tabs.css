@@ -6,3 +6,21 @@
 .wrapper-links {
   color: #000;
 }
+
+.wrapper-navbar {
+  background-color: transparent;
+  position: fixed;
+  z-index: 1;
+  margin: 0;
+  width: 100%;
+  top: 0;
+}
+
+.wrapper-li {
+  background-color: transparent;
+  padding-right: 30px;
+}
+
+.li-text {
+  font-size: larger;
+}

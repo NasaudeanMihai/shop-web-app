@@ -1,10 +1,22 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useContext, useEffect, useState } from 'react';
+import getCategoryClothesFromFirestore from '../../client/getClothesFromFirestore';
 
 import TopProductsItem from './TopProductsItem';
-import { mockDataImage } from '../../mockData/image';
 import './topProducts.css';
+import { DataProps } from '../../interface/dataItemProps';
+import { CartContext } from '../../context/cartContext';
 
 const TopProducts: FC = (): ReactElement => {
+  const [itemsList, setItemsList] = useState<DataProps[]>();
+  const { itemsAddedToCart, setItemsAddedToCart } = useContext(CartContext);
+
+  useEffect(() => {
+    const getItemList = async () => {
+      setItemsList(await getCategoryClothesFromFirestore('jeans'));
+    };
+    getItemList();
+  }, []);
+
   return (
     <div className="row">
       <div className="col wrapper-container">
@@ -27,23 +39,25 @@ const TopProducts: FC = (): ReactElement => {
           </div>
         </div>
         <div className="container wrapper-top-seller">
-          <div className="row">
-            <TopProductsItem
-              aditionalClass="wrapper-top-product-left"
-              image={mockDataImage[3].img}
-              handleAddToCartItem={() => {}}
-            />
-            <TopProductsItem
-              aditionalClass="wrapper-top-product-middle"
-              image={mockDataImage[2].img}
-              handleAddToCartItem={() => {}}
-            />
-            <TopProductsItem
-              aditionalClass="wrapper-top-product-right"
-              image={mockDataImage[1].img}
-              handleAddToCartItem={() => {}}
-            />
-          </div>
+          {itemsList && (
+            <div className="row">
+              <TopProductsItem
+                aditionalClass="wrapper-top-product-left"
+                image={itemsList[0].data.image}
+                handleAddToCartItem={() => setItemsAddedToCart([...itemsAddedToCart, itemsList[0].data])}
+              />
+              <TopProductsItem
+                aditionalClass="wrapper-top-product-middle"
+                image={itemsList[25].data.image}
+                handleAddToCartItem={() => setItemsAddedToCart([...itemsAddedToCart, itemsList[25].data])}
+              />
+              <TopProductsItem
+                aditionalClass="wrapper-top-product-right"
+                image={itemsList[17].data.image}
+                handleAddToCartItem={() => setItemsAddedToCart([...itemsAddedToCart, itemsList[17].data])}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,14 @@
+.wrapper-search-bar {
+  position: fixed;
+  z-index: 1;
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 83%;
+  top: 25px;
+}
+.wrapper-content {
+  margin-top: 100px;
+}
+.wrapper-input-search {
+  padding-top: 10px;
+}

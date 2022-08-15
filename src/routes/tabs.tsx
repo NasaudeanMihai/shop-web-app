@@ -1,12 +1,32 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { CartContext } from '../context/cartContext';
+import { useEffect, useState } from 'react';
 import { IoShirtSharp } from 'react-icons/io5';
+
+import HeaderMenu from './HeaderMenu';
+import MobileMenuModal from '../components/MobileMenuModal/MobileMenuModal';
+
 import './tabs.css';
 
 const Tabs = () => {
-  const { itemsAddedToCart } = useContext(CartContext);
   const [navbarColor, setNavbarColor] = useState<string>('transparent');
+  const [mobileMenuModal, setModalMenuModal] = useState<boolean>(false);
+
+  const handleMobileMenuModalButton = () => setModalMenuModal(false);
+  const handleMobileMenuButton = () => setModalMenuModal(true);
+
+  useEffect(() => {
+    document.body.style.overflow = 'auto';
+  });
+
+  useEffect(() => {
+    window.addEventListener('wheel', () => {
+      if (window.scrollY >= 20) {
+        setNavbarColor('#D3D3D3');
+      }
+      if (window.scrollY <= 19) {
+        setNavbarColor('transparent');
+      }
+    });
+  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -19,34 +39,24 @@ const Tabs = () => {
     });
   }, []);
 
+  if (mobileMenuModal) {
+    return (
+      <MobileMenuModal
+        handleMobileMenuModalButton={handleMobileMenuModalButton}
+        handleCloseMobileMenuModalButton={handleMobileMenuModalButton}
+      />
+    );
+  }
+
   return (
     <div
       className="row justify-content-between align-items-center wrapper-navbar"
       style={{ backgroundColor: navbarColor }}>
       <div className="col">
-        <IoShirtSharp className="icon" />
+        <IoShirtSharp className="icon" size={30} />
       </div>
       <div className="col">
-        <div className="row justify-content-end wrapper-li">
-          <Link className="links-btn wrapper-links" to="/">
-            <li className="links-btn li-text">Home</li>
-          </Link>
-
-          <Link className="links-btn wrapper-links" to="/login">
-            <li className="links-btn li-text">Login</li>
-          </Link>
-          <Link className="links-btn wrapper-links" to="/signUp">
-            <li className="links-btn li-text">Sign Up</li>
-          </Link>
-          <Link className="links-btn wrapper-links profile-link" to="/admin">
-            <li className="links-btn li-text">Profile</li>
-          </Link>
-          {itemsAddedToCart.length !== 0 && (
-            <Link className="links-btn wrapper-links profile-link" to="/cart">
-              <li className="links-btn li-text">Cart {itemsAddedToCart.length !== 0 && itemsAddedToCart.length}</li>
-            </Link>
-          )}
-        </div>
+        <HeaderMenu handleMobileMenuButton={handleMobileMenuButton} />
       </div>
     </div>
   );
